@@ -1,0 +1,27 @@
+<div class="menu_box">
+	<div class="header">Profile</div>
+	<div class="content">
+		<div class="menu_part">
+			<h2 data-ng-click="hei()">Change password</h2>
+			<form>
+				<ul>
+					<li>
+					  <label>New password</label>
+					  <input type="password" name="password" data-ng-model="newPassword.password"><br>
+					</li>
+					<li>
+					  <label>Repeat password</label>
+					  <input type="password" name="passwordRepeat" data-ng-model="newPassword.passwordRepeat"><br>
+					</li>
+					<li>
+					  <input type="button" value="Change password" data-ng-click="changePassword()">
+					</li>
+				</ul>
+			</form>
+		</div>
+		<div class="menu_part">
+			<h2>Delete user</h2>
+			<a href="" data-ng-click="deleteUser()">Click here to delete user</a>
+		</div>
+	</div>
+</div>

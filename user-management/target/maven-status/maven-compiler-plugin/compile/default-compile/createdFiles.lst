@@ -1,0 +1,6 @@
+no/plasmid/order/usermanagement/UserManagementException.class
+no/plasmid/order/usermanagement/UserManagementService.class
+no/plasmid/order/usermanagement/im/UserEntity.class
+no/plasmid/order/usermanagement/util/PasswordHash.class
+no/plasmid/order/usermanagement/dao/UserDAO.class
+no/plasmid/order/usermanagement/im/User.class

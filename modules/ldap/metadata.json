@@ -1,0 +1,97 @@
+{
+  "name": "datacentred-ldap",
+  "version": "0.2.1",
+  "source": "git://github.com/datacentred/datacentred-ldap.git",
+  "author": "DataCentred Ltd",
+  "license": "Apache License, Version 2.0",
+  "summary": "Module for managing OpenLDAP",
+  "description": "Install and manage OpenLDAP",
+  "project_page": "UNKNOWN",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=4.1.0"
+    }
+  ],
+  "types": [
+    {
+      "name": "ldap_entry",
+      "doc": "Type to manage LDAP entries",
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "Name of LDAP entry i.e. cn=Foo,ou=Bar,dc=baz,dc=co,dc=uk"
+        },
+        {
+          "name": "host",
+          "doc": "Host Address (FQDN or IP) of the LDAP server"
+        },
+        {
+          "name": "base",
+          "doc": "LDAP tree base i.e. dc=foo,dc=co,dc=uk"
+        },
+        {
+          "name": "port",
+          "doc": "Port of the LDAP server (default 389)"
+        },
+        {
+          "name": "username",
+          "doc": "Username of admin account on LDAP server"
+        },
+        {
+          "name": "password",
+          "doc": "Password of admin account on LDAP server"
+        },
+        {
+          "name": "attributes",
+          "doc": "LDAP entry attributes as a hash i.e. { :givenName => \"Foo\",\n                                                 :objectClass =>\n                                                   [\"top\", \"person\", \"inetorgPerson\"]}"
+        },
+        {
+          "name": "self_signed",
+          "doc": "Whether the LDAP server certificate is self-signed"
+        }
+      ],
+      "providers": [
+        {
+          "name": "ldap",
+          "doc": ""
+        }
+      ]
+    }
+  ],
+  "checksums": {
+    "Gemfile": "938aa691779f2fc6f45503a3799d162f",
+    "Gemfile.lock": "26576652d0c00192bd61dd6a67a61391",
+    "LICENSE": "cdbf8d74b765504fbdf8e154bb4458a1",
+    "Modulefile": "ae7f58f17bec8d250894a98e7293bd4f",
+    "README.md": "1200d648d3e5b7dc6599c855a8f22cf3",
+    "Rakefile": "908c9fe0021498e5f386d5e4de8d9f52",
+    "lib/puppet/parser/functions/sha1digest.rb": "9373924554055c36278189e05a642f13",
+    "lib/puppet/provider/ldap_entry/ldap.rb": "6a71e4dd768ae977dee075f9c7a7df6a",
+    "lib/puppet/type/ldap_entry.rb": "9202be0a25a1d287a9dd6218e54c7873",
+    "manifests/client/config.pp": "edc749854faace657f093b3bd4c5bbfc",
+    "manifests/client/install.pp": "7407ec83fe24ed4800dc2e4835d57ef8",
+    "manifests/client.pp": "2b8933404414f9b808a5303ddf90b4ab",
+    "manifests/params.pp": "e05f0b42227a521c6cfc4ce11b2855b8",
+    "manifests/server/config.pp": "4e282aacda15541fb1910aadb0a77c46",
+    "manifests/server/install.pp": "ad2ff0791e0c1af7e732208a1cf55a96",
+    "manifests/server/service.pp": "0d0a999f11e679b50a803b9dcf0974dc",
+    "manifests/server.pp": "2a9505aff4b296fdea596416aa874509",
+    "spec/classes/ldap_client_spec.rb": "4e15018d280d7e8f80f3ff91323437fa",
+    "spec/classes/ldap_server_spec.rb": "5e175fc4c1162c6fa2863ffda6b49796",
+    "spec/functions/sha1digest_spec.rb": "4efcbd881fbd4f88197454f2478a5a5a",
+    "spec/spec.opts": "5769e82bc022222dd9968cf768f28084",
+    "spec/spec_helper.rb": "2852aeb80d710929a61ddb855a27eb4a",
+    "spec/support/ldap_setup.rb": "e023ad95026216e5b0bc13fd7d95c23b",
+    "templates/debian/defaults.erb": "7967ca3d2c2e528e2a5ffe37a93668df",
+    "templates/ldap.conf.erb": "248f14e6f7e2fe7b9ee7c577d0f52af2",
+    "templates/slapd.conf.erb": "1220c46fff264a965e9da66b30d894d9",
+    "tests/init.pp": "93e13540f5b4533b6700c1bae13fe58e"
+  }
+}

@@ -1,0 +1,9 @@
+Package: order-engine
+Version: 0.0.1
+Architecture: all
+Section: web
+Priority: optional
+Depends: 
+Maintainer: Knut Erik Helgesen
+Installed-Size: 96
+Description: Order enginge package.

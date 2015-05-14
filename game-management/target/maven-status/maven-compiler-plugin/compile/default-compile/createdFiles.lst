@@ -1,0 +1,12 @@
+no/plasmid/order/gamemanagement/model/Player.class
+no/plasmid/order/gamemanagement/dao/GameDAO.class
+no/plasmid/order/gamemanagement/GameManagementService.class
+no/plasmid/order/gamemanagement/game/ticktacktoe/HumanPlayer.class
+no/plasmid/order/gamemanagement/GameManagementException.class
+no/plasmid/order/gamemanagement/game/ticktacktoe/CPUPlayer.class
+no/plasmid/order/gamemanagement/order/OrderListener.class
+no/plasmid/order/gamemanagement/model/Game.class
+no/plasmid/order/gamemanagement/model/GameEntity.class
+no/plasmid/order/gamemanagement/game/ticktacktoe/TickTackToe.class
+no/plasmid/order/gamemanagement/order/Order.class
+no/plasmid/order/gamemanagement/GameFactory.class

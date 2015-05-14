@@ -1,0 +1,100 @@
+section {
+	clear:both;}
+
+/* ************************************************************************
+** Modal window
+*************************************************************************** */
+
+.modal_window {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 100; }
+
+/* ************************************************************************
+** Menu box
+*************************************************************************** */
+
+.menu_box {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  width: 90%;
+  margin-top: 210px;
+  margin-top:  13.125rem;
+  max-width: 640px;
+  max-width:  40rem;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+  -webkit-border-radius: 0.312rem;
+  -moz-border-radius: 0.312rem;
+  border-radius: 0.312rem; }
+
+.menu_box .header {
+  text-align: center;
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 0.75;
+  color: #fff;
+  background-color: #c54c20;
+  padding: 12px;
+  padding:  0.75rem;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0; }
+
+.menu_box .content {
+  text-align: center;
+  font-size: 20px;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  padding: 18px 40px 30px;
+  padding:  1.25rem 1.25rem 1.25rem;}
+
+.menu_box .content h2 {
+  width: 100%; }
+
+.menu_box .content .menu_part {
+  padding: 1rem;
+  clear: both; }
+
+.menu_box .content form {
+  text-align: left; }
+
+.menu_box .content form label {
+	float: left;
+	width: 35%;
+	color: #777;
+  font-weight: 300;
+  font-style: italic; }
+
+.menu_box .content form input {
+	float: right;
+  width: 65%; }
+  
+.menu_box .content ul {
+	padding: 0}
+
+.menu_box .content li {
+	list-style: none}
+
+/* ************************************************************************
+** Nav bar
+*************************************************************************** */
+ul.navbar li {
+	float: left;
+	margin: 0.75rem;
+	padding: 0.75rem;
+	list-style: none;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 0.312rem;
+  -webkit-border-radius: 0.312rem;
+  -moz-border-radius: 0.312rem;
+	}

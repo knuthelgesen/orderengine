@@ -1,0 +1,8 @@
+#! /bin/bash
+
+#Installation directory owner
+chown -R order:order /a01
+
+#Restart Apache
+service apache2 restart
+

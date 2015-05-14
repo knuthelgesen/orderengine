@@ -1,0 +1,12 @@
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/dao/GameDAO.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/game/ticktacktoe/TickTackToe.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/model/GameEntity.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/model/Game.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/model/Player.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/game/ticktacktoe/HumanPlayer.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/order/Order.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/order/OrderListener.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/GameFactory.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/GameManagementException.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/GameManagementService.java
+/share/sandboxes/plasmid/orderengine/game-management/src/main/java/no/plasmid/order/gamemanagement/game/ticktacktoe/CPUPlayer.java

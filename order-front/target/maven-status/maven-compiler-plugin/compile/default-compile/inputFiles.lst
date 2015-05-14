@@ -1,0 +1,17 @@
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/AccessDeniedException.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/UserController.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/ApplicationBinder.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/utils/WSTokenUtils.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/GameController.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/CreateUserJSON.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/LogInJSON.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/ChangePasswordJSON.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/AccessDeniedExceptionMapper.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/UserUtils.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/TokenController.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/CSRFTokenFilter.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/DataSourceFactory.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/utils/CSRFUtils.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/ThrowableExceptionMapper.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/Application.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/IllegalArgumentExceptionMapper.java

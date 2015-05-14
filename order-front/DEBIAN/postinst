@@ -1,0 +1,7 @@
+#Log file directory owner
+chown -R order:order /var/log/order-front
+
+#Create link from /etc/init.d
+ln -s /a01/order-front/wrapper/wrapper-order-front /etc/init.d/order-front
+#Start application
+/etc/init.d/order-front start

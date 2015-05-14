@@ -1,0 +1,47 @@
+<div class="modal_window">
+	<div class="menu_box">
+		<div class="header">Welcome</div>
+		<div class="content">
+			<div class="menu_part">
+			<h2>Log in</h2>
+			<form>
+				<ul>
+					<li>
+					  <label>User name</label>
+					  <input type="text" name="userName" data-ng-model="logIn.userName">
+					</li>
+					<li>
+					  <label>Password</label>
+					  <input type="password" name="password" data-ng-model="logIn.password">
+					</li>
+					<li>
+					  <input type="button" value="Log in" data-ng-click="loginCtrl.logIn()" data-ng-disabled="!loginCtrl.isLogInFormValid()">
+					</li>
+				</ul>
+			</form>
+			</div>
+			<div class="menu_part">
+			<h2>Register a new user</h2>
+			<form>
+				<ul>
+					<li>
+					  <label>User name</label>
+					  <input type="text" name="userName" data-ng-model="newUser.userName"><br>
+					</li>
+					<li>
+					  <label>Password</label>
+					  <input type="password" name="password" data-ng-model="newUser.password"><br>
+					</li>
+					<li>
+					  <label>Repeat password</label>
+					  <input type="password" name="passwordRepeat" data-ng-model="newUser.passwordRepeat"><br>
+					</li>
+					<li>
+					  <input type="button" value="Register" data-ng-click="loginCtrl.createUser()" data-ng-disabled="!loginCtrl.isCreateFormValid()">
+					</li>
+				</ul>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+stage { 'pre': before => Stage['main'] }
+
+class {
+  'apt-init': stage => pre;
+}
+
+class apt-init {
+
+#  exec { 'changemirrors' :
+#    path => "/usr/bin:/usr/sbin:/bin",
+#    cwd => '/',
+#    command => 'sudo sed -i -e s/us.archive.ubuntu.com/no.archive.ubuntu.com/g /etc/apt/sources.list',
+#    unless => "egrep -c 'no.archive.ubuntu.com' /etc/apt/sources.list"
+#  }
+
+  exec { 'apt-get update':
+    command => '/usr/bin/apt-get update'
+#    require => Exec['changemirrors']
+  }
+
+#  file{ "/etc/apt/apt.conf" :
+#    content => "Acquire::http::Proxy \"http://85.19.187.24:8080\";\nAcquire::https::Proxy \"http://85.19.187.24:8080\";\nAcquire::http::Pipeline-Depth \"0\";\n",
+#    owner => "root",
+#    group => "root",
+#    before => Exec["apt-get update"]
+#  }
+
+#  exec { 'proxy_environment' :
+#    path => "/usr/bin:/usr/sbin:/bin",
+#    cwd => '/',
+#    command => 'echo "HTTP_PROXY=\"http://85.19.187.24:8080\"\nhttp_proxy=\"http://85.19.187.24:8080\"\nHTTPS_PROXY=\"http://85.19.187.24:8080\"\nhttps_proxy=\"http://85.19.187.24:8080\"\n" >> /etc/environment',
+#    unless => "egrep -c 'HTTP_PROXY' /etc/environment"
+#  }
+}

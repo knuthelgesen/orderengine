@@ -1,0 +1,12 @@
+-- -----------------------------------------------
+-- Create the database
+-- -----------------------------------------------
+CREATE DATABASE order character set utf8 collate utf8_general_ci;
+
+-- -----------------------------------------------
+-- Create user for Tomcat
+-- -----------------------------------------------
+
+GRANT ALL ON db-name.* TO order@'%' IDENTIFIED BY 'order';
+GRANT ALL ON db-name.* TO order@'localhost' IDENTIFIED BY 'order';
+

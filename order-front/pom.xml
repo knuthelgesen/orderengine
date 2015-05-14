@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>order-front</artifactId>
+  <packaging>war</packaging>
+  <name>order-front Maven Webapp</name>
+  
+  <parent>
+  	<groupId>no.plasmid.order</groupId>
+  	<artifactId>order-engine</artifactId>
+  	<version>0.0.1</version>
+  </parent>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>no.plasmid.order</groupId>
+  		<artifactId>game-management</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+
+  	<dependency>
+  		<groupId>no.plasmid.order</groupId>
+  		<artifactId>user-management</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+
+		<!-- Logging -->  	
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.6</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
+			<artifactId>jersey-test-framework-provider-inmemory</artifactId>
+			<version>2.17</version>
+		</dependency>
+
+		<dependency>
+    	<groupId>org.glassfish.jersey.media</groupId>
+    	<artifactId>jersey-media-moxy</artifactId>
+    	<version>2.17</version>
+		</dependency>
+
+  	<!-- JSP/Servlet dependencies -->
+		<dependency>
+    	<groupId>javax</groupId>
+    	<artifactId>javaee-web-api</artifactId>
+    	<version>6.0</version>
+    	<scope>provided</scope>
+  	</dependency>
+
+  	<!-- Web sockets -->
+		<dependency>
+    	<groupId>javax.websocket</groupId>
+    	<artifactId>javax.websocket-api</artifactId>
+    	<version>1.0</version>
+    	<scope>provided</scope>
+		</dependency>
+  
+		<dependency>
+    	<groupId>org.constretto</groupId>
+    	<artifactId>constretto-api</artifactId>
+    	<version>2.2.1</version>
+		</dependency>
+		<dependency>
+    	<groupId>org.constretto</groupId>
+    	<artifactId>constretto-core</artifactId>
+    	<version>2.2.1</version>
+		</dependency>
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>order-front</finalName>
+
+		<plugins>
+		
+			<!-- Compiler plugin, specify target -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+			</plugin>
+
+		</plugins>
+  </build>
+
+</project>

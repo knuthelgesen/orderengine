@@ -15,7 +15,7 @@
 					  <input type="password" name="password" data-ng-model="logIn.password">
 					</li>
 					<li>
-					  <input type="button" value="Log in" data-ng-click="loginCtrl.logIn()" data-ng-disabled="!loginCtrl.isLogInFormValid()">
+					  <div class="input_container"><input type="button" value="Log in" data-ng-click="loginCtrl.logIn()" data-ng-disabled="!loginCtrl.isLogInFormValid()"></div>
 					</li>
 				</ul>
 			</form>
@@ -37,7 +37,7 @@
 					  <input type="password" name="passwordRepeat" data-ng-model="newUser.passwordRepeat"><br>
 					</li>
 					<li>
-					  <input type="button" value="Register" data-ng-click="loginCtrl.createUser()" data-ng-disabled="!loginCtrl.isCreateFormValid()">
+					  <div class="input_container"><input type="button" value="Register" data-ng-click="loginCtrl.createUser()" data-ng-disabled="!loginCtrl.isCreateFormValid()"></div>
 					</li>
 				</ul>
 			</form>

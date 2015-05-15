@@ -68,16 +68,31 @@ section {
   text-align: left; }
 
 .menu_box .content form label {
-	float: left;
-	width: 35%;
+	width: 100%;
+	float: none;
 	color: #777;
   font-weight: 300;
   font-style: italic; }
 
+.menu_box .content form div.input_container {
+  width: 100%;
+	float: right;}
+
 .menu_box .content form input {
-	float: right;
-  width: 65%; }
-  
+  width: 100%;
+	float: none;}
+
+@media screen and (min-width: 500px) {
+	.menu_box .content form label {
+		width: 50%;
+		float: left;}
+
+	.menu_box .content form input {
+		width: 50%;
+		float: right;}
+
+}
+
 .menu_box .content ul {
 	padding: 0}
 

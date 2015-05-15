@@ -10,7 +10,7 @@
   	<artifactId>order-engine</artifactId>
   	<version>0.0.1</version>
   </parent>
-  
+
   <dependencies>
   	<dependency>
   		<groupId>no.plasmid.order</groupId>
@@ -37,11 +37,6 @@
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>2.17</version>
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
-			<artifactId>jersey-test-framework-provider-inmemory</artifactId>
-			<version>2.17</version>
-		</dependency>
 
 		<dependency>
     	<groupId>org.glassfish.jersey.media</groupId>
@@ -51,11 +46,10 @@
 
   	<!-- JSP/Servlet dependencies -->
 		<dependency>
-    	<groupId>javax</groupId>
-    	<artifactId>javaee-web-api</artifactId>
-    	<version>6.0</version>
-    	<scope>provided</scope>
-  	</dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 
   	<!-- Web sockets -->
 		<dependency>
@@ -75,13 +69,35 @@
     	<artifactId>constretto-core</artifactId>
     	<version>2.2.1</version>
 		</dependency>
-  
+
+		<!-- For testing -->  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.9</version>
       <scope>test</scope>
     </dependency>
+<dependency>
+    <groupId>org.glassfish.jersey.test-framework</groupId>
+    <artifactId>jersey-test-framework-core</artifactId>
+    <version>2.1</version>
+</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.glassfish.jersey.test-framework.providers</groupId> -->
+<!-- 			<artifactId>jersey-test-framework-provider-jetty</artifactId> -->
+<!-- 			<version>2.17</version> -->
+<!-- 		</dependency> -->
+<dependency>
+    <groupId>org.glassfish.jersey.containers</groupId>
+    <artifactId>jersey-container-grizzly2-servlet</artifactId>
+    <version>2.1</version>
+</dependency>		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.170</version>
+			<scope>test</scope>
+		</dependency>
+    
   </dependencies>
 
   <build>

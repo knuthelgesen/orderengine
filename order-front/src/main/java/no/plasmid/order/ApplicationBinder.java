@@ -16,6 +16,7 @@ public class ApplicationBinder extends AbstractBinder {
 		bind(UserDAO.class).to(UserDAO.class);
 		
 		bind(GameManagementService.class).to(GameManagementService.class);
+
 		bindFactory(DataSourceFactory.class).to(DataSource.class);
 	}
 

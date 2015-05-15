@@ -14,6 +14,10 @@ hs_err_pid*
 *.box
 *.deb 
 
+.project
+.settings
+.vagrant/
+
 #Package dirs
 order-statisk/package
 package

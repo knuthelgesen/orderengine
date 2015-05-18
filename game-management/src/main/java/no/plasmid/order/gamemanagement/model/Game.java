@@ -16,13 +16,13 @@ public abstract class Game implements Serializable, OrderListener {
 		this.gameId = gameId;
 		this.creatorId = creatorId;
 	}
-
+	
 	public Integer getGameId() {
 		return gameId;
 	}
-
+	
 	public Integer getCreatorId() {
 		return creatorId;
 	}
-
+	
 }

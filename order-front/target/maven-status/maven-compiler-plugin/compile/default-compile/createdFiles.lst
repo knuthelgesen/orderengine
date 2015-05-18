@@ -3,6 +3,7 @@ no/plasmid/order/rest/GameController.class
 no/plasmid/order/utils/CSRFUtils.class
 no/plasmid/order/exception/IllegalArgumentExceptionMapper.class
 no/plasmid/order/rest/TokenController.class
+no/plasmid/order/rest/CreateGameJson.class
 no/plasmid/order/ApplicationBinder.class
 no/plasmid/order/utils/WSTokenUtils$1.class
 no/plasmid/order/rest/UserUtils.class

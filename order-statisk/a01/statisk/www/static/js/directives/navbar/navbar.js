@@ -6,7 +6,7 @@ navbar.$inject = ['userDataservice'];
 function navbar(userDataservice) {
     var directive = {};
 	directive.restrict = 'E';
-    directive.templateUrl = '/js/directives/navbar/navbar.html';
+    directive.templateUrl = '/static/js/directives/navbar/navbar.html';
 
     directive.controller = ['$scope', function ($scope) {
     	this.logOut = function() {

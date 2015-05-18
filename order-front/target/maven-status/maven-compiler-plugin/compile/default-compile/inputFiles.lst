@@ -1,6 +1,7 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/AccessDeniedException.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/UserController.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/ApplicationBinder.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/CreateGameJson.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/utils/WSTokenUtils.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/GameController.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/CreateUserJSON.java

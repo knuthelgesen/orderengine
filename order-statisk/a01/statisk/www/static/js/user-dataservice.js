@@ -1,8 +1,8 @@
 var app = angular.module("OrderEngine").factory('userDataservice', userDataservice);
 
-userDataservice.$inject = ["$http", "$rootScope"];
+userDataservice.$inject = ["$http"];
 
-function userDataservice($http, $rootScope) {
+function userDataservice($http) {
 	var self = this;
 	self.functions = {
 			isLoggedIn : isLoggedIn,

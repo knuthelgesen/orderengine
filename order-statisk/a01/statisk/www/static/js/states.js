@@ -10,7 +10,39 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
      ************************************************************************************/
     .state('main_menu', {
     	url : '/',
-    	templateUrl : '/partials/main_menu.html'
+    	templateUrl : '/static/partials/main_menu.html'
+    })
+
+    /* **********************************************************************************
+     *  New game menu state 
+     ************************************************************************************/
+    .state('new_game', {
+    	url : '/newgame',
+    	templateUrl : '/static/partials/new_game_menu.html'
+    })
+    
+    .state('new_game.ttt', {
+    	url : '/ttt',
+		templateUrl : '/static/partials/new_game_ttt.html',
+    	resolve : {
+    		gameDataservice : 'gameDataservice'
+    	},
+    	controller : function($scope, gameDataservice) {
+    		$scope.newGame = {
+    			gameType : 'tic_tac_toe',
+    			gameData : {
+    				userColor : 'blue'
+    			}
+    		};
+    		
+    		$scope.setUserColor = function(userColor) {
+				$scope.newGame.gameData.userColor = userColor;
+    		};
+    		
+    		$scope.createGame = function() {
+    			gameDataservice.createGame($scope.newGame);
+    		};
+    	}
     })
 
     /* **********************************************************************************
@@ -18,7 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
      ************************************************************************************/
     .state('profile', {
     	url : '/profile',
-    	templateUrl : '/partials/profile.html',
+    	templateUrl : '/static/partials/profile.html',
     	resolve : {
     		userDataservice : 'userDataservice'
     	},

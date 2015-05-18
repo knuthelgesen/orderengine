@@ -6,7 +6,7 @@ login.$inject = ['userDataservice'];
 function login(userDataservice) {
     var directive = {};
 	directive.restrict = 'E';
-    directive.templateUrl = '/js/directives/login/login.html';
+    directive.templateUrl = '/static/js/directives/login/login.html';
 
     directive.controller = ['$scope', function ($scope) {
     	this.isLogInFormValid = function() {

@@ -78,7 +78,7 @@ section {
   width: 100%;
 	float: right;}
 
-.menu_box .content form input {
+.menu_box .content form input,select {
   width: 100%;
 	float: none;}
 
@@ -87,10 +87,9 @@ section {
 		width: 50%;
 		float: left;}
 
-	.menu_box .content form input {
+	.menu_box .content form input,select {
 		width: 50%;
 		float: right;}
-
 }
 
 .menu_box .content ul {
@@ -98,6 +97,13 @@ section {
 
 .menu_box .content li {
 	list-style: none}
+
+/* ************************************************************************
+** New game menu
+*************************************************************************** */
+div.game_type {
+	width: 33%;
+	float: left; }
 
 /* ************************************************************************
 ** Nav bar

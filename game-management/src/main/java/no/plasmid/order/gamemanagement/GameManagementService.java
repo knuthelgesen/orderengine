@@ -2,6 +2,11 @@ package no.plasmid.order.gamemanagement;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Map;
+
+import javax.annotation.ManagedBean;
+import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import no.plasmid.order.gamemanagement.dao.GameDAO;
 import no.plasmid.order.gamemanagement.model.Game;
@@ -12,17 +17,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ManagedBean
+@Resource
 public class GameManagementService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameManagementService.class);
 	
+	@Inject
 	private GameDAO gameDAO;
 	
-	public GameManagementService() {
-		gameDAO = new GameDAO();
-	}
-	
-	public Game createGame(String gameType, User creator) throws GameManagementException {
+	public Game createGame(String gameType, Map<String, String> gameData, User creator) throws GameManagementException {
 		LOGGER.debug("Start create game");
 		
 		if (StringUtils.isEmpty(gameType)) {
@@ -35,6 +39,7 @@ public class GameManagementService {
     try {
 			//Create and store the new game
 			Game game = GameFactory.create(gameDAO.createGameId(), creator.getUserId(), gameType);
+			LOGGER.debug("Created game " + game + ", inserting into database");
 			GameEntity gameEntity = new GameEntity(game.getGameId(), new Date(), game.getCreatorId(), game);
 			gameDAO.createGame(gameEntity);
 	  	LOGGER.debug("End create game");

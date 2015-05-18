@@ -4,14 +4,14 @@ import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.order.Order;
 
-public class TickTackToe extends Game {
+public class TicTacToe extends Game {
 
 	private static final long serialVersionUID = 1L;
 
 	private Player oPlayer;
 	private Player xPlayer;
 	
-	public TickTackToe(Integer gameId, Integer creatorId) {
+	public TicTacToe(Integer gameId, Integer creatorId) {
 		super(gameId, creatorId);
 	}
 

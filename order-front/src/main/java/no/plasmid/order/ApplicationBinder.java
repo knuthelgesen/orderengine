@@ -3,6 +3,7 @@ package no.plasmid.order;
 import javax.sql.DataSource;
 
 import no.plasmid.order.gamemanagement.GameManagementService;
+import no.plasmid.order.gamemanagement.dao.GameDAO;
 import no.plasmid.order.usermanagement.UserManagementService;
 import no.plasmid.order.usermanagement.dao.UserDAO;
 
@@ -16,6 +17,7 @@ public class ApplicationBinder extends AbstractBinder {
 		bind(UserDAO.class).to(UserDAO.class);
 		
 		bind(GameManagementService.class).to(GameManagementService.class);
+		bind(GameDAO.class).to(GameDAO.class);
 
 		bindFactory(DataSourceFactory.class).to(DataSource.class);
 	}

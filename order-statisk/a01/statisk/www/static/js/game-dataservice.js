@@ -5,9 +5,18 @@ gameDataservice.$inject = ["$http"];
 function gameDataservice($http) {
 	var self = this;
 	self.functions = {
+			getGames : getGames,
 			createGame : createGame
 		};
 	return self.functions;
+	
+	function getGames() {
+    	return $http.get('/order-front/games').success(function(data) {
+    		return data;
+    	}).error(function(response) {
+    		return;
+    	});
+	};
 	
 	function createGame(newGame) {
     	return $http.put('/order-front/games/', newGame).success(function(data) {
@@ -15,5 +24,6 @@ function gameDataservice($http) {
     	}).error(function(response) {
     		return;
     	});
-	}
+	};
+	
 };

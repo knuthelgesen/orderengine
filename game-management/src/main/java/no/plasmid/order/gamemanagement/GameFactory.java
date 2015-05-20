@@ -1,6 +1,6 @@
 package no.plasmid.order.gamemanagement;
 
-import no.plasmid.order.gamemanagement.game.ticktacktoe.TicTacToe;
+import no.plasmid.order.gamemanagement.game.tictactoe.TicTacToe;
 import no.plasmid.order.gamemanagement.model.Game;
 
 public class GameFactory {

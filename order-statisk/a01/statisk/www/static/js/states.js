@@ -21,6 +21,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     	templateUrl : '/static/partials/new_game_menu.html'
     })
     
+    /* **********************************************************************************
+     *  New TicTacToe game menu state
+     ************************************************************************************/
     .state('new_game.ttt', {
     	url : '/ttt',
 		templateUrl : '/static/partials/new_game_ttt.html',
@@ -45,6 +48,22 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     	}
     })
 
+    /* **********************************************************************************
+     *  Load game menu state 
+     ************************************************************************************/
+    .state('load_game', {
+    	url : '/loadgame',
+    	templateUrl : '/static/partials/load_game_menu.html',
+    	resolve : {
+    		gameDataservice : 'gameDataservice'
+    	},
+    	controller : function($scope, gameDataservice) {
+    		gameDataservice.getGames().then(function(data) {
+    			$scope.gameList = data.data;
+    		});
+    	}    	
+    })
+    
     /* **********************************************************************************
      *  Profile page state 
      ************************************************************************************/

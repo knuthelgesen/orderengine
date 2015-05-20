@@ -25,4 +25,6 @@ public abstract class Game implements Serializable, OrderListener {
 		return creatorId;
 	}
 	
+	public abstract GameJson toJson();
+	
 }

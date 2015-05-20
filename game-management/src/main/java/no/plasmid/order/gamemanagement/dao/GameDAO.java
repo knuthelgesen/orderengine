@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.Resource;
@@ -25,8 +27,9 @@ public class GameDAO {
 
 	private final static String QUERY_INSERT_GAME_ID			= "INSERT INTO game_id_seq () VALUES ()";
 
-	private final static String QUERY_SELECT_GAME_BY_ID		= "SELECT * FROM games WHERE games.game_id = ?";
-	private final static String QUERY_INSERT_GAME					= "INSERT INTO games (games.game_id, games.created, games.created_by, games.game_data) VALUES (?, ?, ?, ?)";
+	private final static String QUERY_SELECT_GAME_BY_ID						= "SELECT * FROM games WHERE games.game_id = ?";
+	private final static String QUERY_SELECT_GAMES_BY_CREATOR_ID	= "SELECT * FROM games WHERE games.created_by = ?";
+	private final static String QUERY_INSERT_GAME									= "INSERT INTO games (games.game_id, games.created, games.created_by, games.game_data) VALUES (?, ?, ?, ?)";
 	
 	private final static String COLUMN_GAME_ID				= "game_id";
 	private final static String COLUMN_CREATED				= "created";
@@ -70,6 +73,24 @@ public class GameDAO {
 			throw new SQLException("Could not execute statmement QUERY_SELECT_GAME_BY_ID", e);
 		}
 	}
+	
+	public List<GameEntity> readGames(Integer creatorId) throws SQLException {
+  	try (Connection connection = datasource.getConnection();
+  			PreparedStatement statement = connection.prepareStatement(QUERY_SELECT_GAMES_BY_CREATOR_ID, Statement.NO_GENERATED_KEYS);){
+  		statement.setInt(1, creatorId);
+  		
+  		if (!statement.execute()) {
+				throw new SQLException("Could not execute statmement QUERY_SELECT_GAME_BY_ID");
+  		}
+			ResultSet rs = statement.getResultSet();
+			List<GameEntity> rc = createGameEntityListFromResultSet(rs);
+			rs.close();
+  		
+			return rc;
+  	} catch (ClassNotFoundException | IOException e) {
+			throw new SQLException("Could not execute statmement QUERY_SELECT_GAMES_BY_CREATOR_ID", e);
+		}
+	}
 
 	public void createGame(GameEntity gameEntity) throws SQLException {
   	try (Connection connection = datasource.getConnection();
@@ -101,7 +122,7 @@ public class GameDAO {
 	
 	private GameEntity createGameEntityFromResultSet(ResultSet rs) throws SQLException, IOException, ClassNotFoundException {
 		GameEntity rc = null;
-		if (rs.first()) {
+		if (rs.next()) {
 			Blob blob = rs.getBlob(COLUMN_GAME_DATA);
 			ObjectInputStream ois = new ObjectInputStream(blob.getBinaryStream());
 			Game game = (Game)ois.readObject();
@@ -114,4 +135,14 @@ public class GameDAO {
 		return rc;
 	}
 	
+	private List<GameEntity> createGameEntityListFromResultSet(ResultSet rs) throws SQLException, ClassNotFoundException, IOException {
+		List<GameEntity> rc = new ArrayList<GameEntity>();
+		GameEntity entity = null;
+		while ((entity = createGameEntityFromResultSet(rs)) != null) {
+			rc.add(entity);
+			entity = null;
+		}		
+		return rc;
+	}
+
 }

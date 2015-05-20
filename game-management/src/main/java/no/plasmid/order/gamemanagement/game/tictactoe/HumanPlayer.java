@@ -1,4 +1,4 @@
-package no.plasmid.order.gamemanagement.game.ticktacktoe;
+package no.plasmid.order.gamemanagement.game.tictactoe;
 
 import no.plasmid.order.gamemanagement.model.Player;
 

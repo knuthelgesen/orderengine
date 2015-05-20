@@ -1,6 +1,7 @@
-package no.plasmid.order.gamemanagement.game.ticktacktoe;
+package no.plasmid.order.gamemanagement.game.tictactoe;
 
 import no.plasmid.order.gamemanagement.model.Game;
+import no.plasmid.order.gamemanagement.model.GameJson;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.order.Order;
 
@@ -35,6 +36,16 @@ public class TicTacToe extends Game {
 	public void handleOrder(Order order) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public GameJson toJson() {
+		TicTacToeJson rc = new TicTacToeJson();
+		
+		rc.setGameId(getGameId());
+		rc.setCreatorId(getCreatorId());
+		
+		return rc;
 	}
 
 }

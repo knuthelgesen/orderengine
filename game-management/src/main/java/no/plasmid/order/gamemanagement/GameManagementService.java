@@ -1,7 +1,9 @@
 package no.plasmid.order.gamemanagement;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.ManagedBean;
@@ -47,6 +49,24 @@ public class GameManagementService {
     } catch (SQLException e) {
     	throw new GameManagementException(e);
 		}
+	}
+	
+	public List<Game> getGames(User creator) throws GameManagementException {
+		LOGGER.debug("Start get games");
+		
+		try {
+			List<GameEntity> entityList = gameDAO.readGames(creator.getUserId());
+			List<Game> rc = new ArrayList<Game>();
+			for (GameEntity entity : entityList) {
+				rc.add(entity.getGame());
+			}
+			
+			LOGGER.debug("End get games");
+			return rc;
+		} catch (SQLException e) {
+    	throw new GameManagementException(e);
+		}
+		
 	}
 	
 }

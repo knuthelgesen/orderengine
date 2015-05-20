@@ -2,6 +2,9 @@ package no.plasmid.order.rest;
 
 import static no.plasmid.order.rest.UserUtils.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -19,6 +22,8 @@ import org.slf4j.LoggerFactory;
 import no.plasmid.order.exception.AccessDeniedException;
 import no.plasmid.order.gamemanagement.GameManagementException;
 import no.plasmid.order.gamemanagement.GameManagementService;
+import no.plasmid.order.gamemanagement.model.Game;
+import no.plasmid.order.gamemanagement.model.GameJson;
 
 @Path("games")
 public class GameController {
@@ -29,10 +34,18 @@ public class GameController {
 	GameManagementService gameManagementService;
 	
 	@GET
-	@Path("")
-	public Response getGames() {
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<GameJson> getGames(@Context HttpServletRequest request) throws GameManagementException, AccessDeniedException {
+		LOGGER.debug("Get games");
+		ensureLoggedInUser(request);
 		
-		return null;
+		List<Game> games = gameManagementService.getGames(getLoggedInUser(request));
+		List<GameJson> rc = new ArrayList<GameJson>(games.size());
+		for (Game game : games) {
+			rc.add(game.toJson());
+		}
+		
+		return rc;
 	}
 	
 	public Response getGame() {
@@ -40,16 +53,16 @@ public class GameController {
 	}
 
 	@PUT
-	@Path("")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createGame(@Context HttpServletRequest request, CreateGameJson createGameJson)
+	public GameJson createGame(@Context HttpServletRequest request, CreateGameJson createGameJson)
 			throws GameManagementException, AccessDeniedException {
 		LOGGER.debug("Put createGame");
 		ensureLoggedInUser(request);
 		
-		gameManagementService.createGame(createGameJson.getGameType(), createGameJson.getGameData(), getLoggedInUser(request));
-		return Response.ok().build();
+		Game createdGame = gameManagementService.createGame(createGameJson.getGameType(), createGameJson.getGameData(), getLoggedInUser(request));
+		
+		return createdGame.toJson();
 	}
 	
 }

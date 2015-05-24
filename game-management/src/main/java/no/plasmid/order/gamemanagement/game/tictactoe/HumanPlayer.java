@@ -4,6 +4,8 @@ import no.plasmid.order.gamemanagement.model.Player;
 
 public class HumanPlayer extends Player {
 
+	private static final long serialVersionUID = 1L;
+
 	private final Integer userId;
 	
 	public HumanPlayer(Integer userId) {

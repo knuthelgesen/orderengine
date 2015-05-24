@@ -16,6 +16,7 @@ no/plasmid/order/Application.class
 no/plasmid/order/exception/AccessDeniedExceptionMapper.class
 no/plasmid/order/utils/WSTokenUtils$WSToken.class
 no/plasmid/order/exception/AccessDeniedException.class
+no/plasmid/order/exception/GameNotFoundExceptionMapper.class
 no/plasmid/order/utils/WSTokenUtils$WSTokenMap.class
 no/plasmid/order/CSRFTokenFilter.class
 no/plasmid/order/DataSourceFactory.class

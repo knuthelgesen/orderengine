@@ -64,6 +64,19 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     	}    	
     })
     
+    .state('ingame', {
+    	url : '/ingame/:gameId',
+    	templateUrl : '/static/partials/ingame.html',
+    	resolve : {
+    		gameDataservice : 'gameDataservice'
+    	},
+    	controller : function($scope, $stateParams, gameDataservice) {
+    		gameDataservice.getGame($stateParams.gameId).then(function(data) {
+    			$scope.game = data.data;
+    		});
+    	}    	
+    })
+    
     /* **********************************************************************************
      *  Profile page state 
      ************************************************************************************/

@@ -11,10 +11,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import no.plasmid.order.exception.AccessDeniedException;
 import no.plasmid.order.gamemanagement.GameManagementException;
 import no.plasmid.order.gamemanagement.GameManagementService;
+import no.plasmid.order.gamemanagement.GameNotFoundException;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameJson;
 
@@ -48,8 +49,16 @@ public class GameController {
 		return rc;
 	}
 	
-	public Response getGame() {
-		return null;
+	@GET
+	@Path("{gameId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public GameJson getGame(@Context HttpServletRequest request, @PathParam("gameId") Integer gameId) throws GameManagementException, AccessDeniedException, GameNotFoundException {
+		LOGGER.debug("Get game");
+		ensureLoggedInUser(request);
+		
+		Game game = gameManagementService.getGame(gameId, getLoggedInUser(request));
+		
+		return game.toJson();
 	}
 
 	@PUT

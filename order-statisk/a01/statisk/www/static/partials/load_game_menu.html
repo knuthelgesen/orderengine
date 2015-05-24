@@ -3,8 +3,7 @@
 	<div class="content">
 		<div class="menu_part">
 			<div ng-repeat="game in gameList" ng-switch="game.type">
-<!-- 				{{game}}<br> -->
-				<div ng-switch-when="tic_tac_toe"><a><img alt="Tic-tac-toe" src="/static/img/icon/tictactoe.svg">A game of Tic-Tac-Toe</a></div>
+				<div ng-switch-when="tic_tac_toe"><a data-ui-sref="ingame({gameId:game.gameId})"><img alt="Tic-tac-toe" src="/static/img/icon/tictactoe.svg">A game of Tic-Tac-Toe</a></div>
 				<div ng-switch-when="chess">Neida</div>
 			</div>
 		</div>

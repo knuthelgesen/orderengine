@@ -12,24 +12,25 @@ public class TicTacToe extends Game {
 	private Player oPlayer;
 	private Player xPlayer;
 	
-	public TicTacToe(Integer gameId, Integer creatorId) {
+	private Player currentTurn;
+	
+	public TicTacToe(Integer gameId, Integer creatorId, Player oPlayer, Player xPlayer) {
 		super(gameId, creatorId);
+		this.oPlayer = oPlayer;
+		this.xPlayer = xPlayer;
+		this.currentTurn = oPlayer;
 	}
 
-	public Player getoPlayer() {
+	public Player getOPlayer() {
 		return oPlayer;
 	}
 
-	public void setoPlayer(Player oPlayer) {
-		this.oPlayer = oPlayer;
-	}
-
-	public Player getxPlayer() {
+	public Player getXPlayer() {
 		return xPlayer;
 	}
-
-	public void setxPlayer(Player xPlayer) {
-		this.xPlayer = xPlayer;
+	
+	public Player getCurrentTurn() {
+		return currentTurn;
 	}
 
 	@Override

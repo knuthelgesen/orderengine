@@ -8,6 +8,7 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/LogInJSON.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/ChangePasswordJSON.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/AccessDeniedExceptionMapper.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/GameNotFoundExceptionMapper.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/UserUtils.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/TokenController.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/CSRFTokenFilter.java

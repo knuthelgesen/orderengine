@@ -1,9 +1,9 @@
 var app = angular.module('OrderEngine');
 
 app.directive('login', login);
-login.$inject = ['userDataservice'];
+login.$inject = ['$window', 'userDataservice'];
 
-function login(userDataservice) {
+function login($window, userDataservice) {
     var directive = {};
 	directive.restrict = 'E';
     directive.templateUrl = '/static/js/directives/login/login.html';
@@ -14,7 +14,7 @@ function login(userDataservice) {
     	};
     	
     	this.logIn = function() {
-    		userDataservice.logIn($scope.logIn);
+    		userDataservice.logIn($scope.logIn).then(function() {$window.location.reload();});
     	};
 
     	this.isCreateFormValid = function() {

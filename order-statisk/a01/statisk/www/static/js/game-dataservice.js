@@ -12,7 +12,7 @@ function gameDataservice($http) {
 	return self.functions;
 	
 	function getGames() {
-    	return $http.get('/order-front/games').success(function(data) {
+    	return $http.get('/order-front/rest/games').success(function(data) {
     		return data;
     	}).error(function(response) {
     		return;
@@ -20,7 +20,7 @@ function gameDataservice($http) {
 	};
 
 	function getGame(gameId) {
-    	return $http.get('/order-front/games/' + gameId).success(function(data) {
+    	return $http.get('/order-front/rest/games/' + gameId).success(function(data) {
     		return data;
     	}).error(function(response) {
     		return;
@@ -28,7 +28,7 @@ function gameDataservice($http) {
 	};
 	
 	function createGame(newGame) {
-    	return $http.put('/order-front/games/', newGame).success(function(data) {
+    	return $http.put('/order-front/rest/games/', newGame).success(function(data) {
             return;
     	}).error(function(response) {
     		return;

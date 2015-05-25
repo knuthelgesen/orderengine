@@ -21,3 +21,6 @@ hs_err_pid*
 #Package dirs
 order-statisk/package
 package
+
+#Download dir
+download/*

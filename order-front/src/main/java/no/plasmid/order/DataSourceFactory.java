@@ -13,7 +13,7 @@ public class DataSourceFactory implements Factory<DataSource> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceFactory.class);
 	
 	@Override
-	public void dispose(DataSource arg0) {
+	public void dispose(DataSource ds) {
 	}
 
 	@Override

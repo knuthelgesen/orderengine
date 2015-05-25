@@ -1,6 +1,6 @@
-if [ -f /etc/init.d/order-front ];
-then
-	/etc/init.d/order-front stop
-	rm /etc/init.d/order-front
-fi
+# if [ -f /etc/init.d/order-front ];
+# then
+# 	/etc/init.d/order-front stop
+# 	rm /etc/init.d/order-front
+# fi
 

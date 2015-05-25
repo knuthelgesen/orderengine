@@ -6,7 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ApplicationPath("/")
+@ApplicationPath("/rest")
 public class Application extends ResourceConfig {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);

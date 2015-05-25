@@ -17,3 +17,4 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/ThrowableExceptionMapper.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/Application.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/IllegalArgumentExceptionMapper.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/GameEndPoint.java

@@ -24,7 +24,7 @@ function userDataservice($http) {
 	};
 	
 	function resolveLoggedIn() {
-    	return $http.get('/order-front/users/loggedIn').success(function(data) {
+    	return $http.get('/order-front/rest/users/loggedIn').success(function(data) {
     		self.functions.loggedIn = true;
     	}).error(function(response) {
     		self.functions.loggedIn = false;
@@ -32,7 +32,7 @@ function userDataservice($http) {
 	}
 		
 	function createUser(newUser) {
-    	return $http.put('/order-front/users/', newUser).success(function(data) {
+    	return $http.put('/order-front/rest/users/', newUser).success(function(data) {
             return;
     	}).error(function(response) {
     		return;
@@ -40,7 +40,7 @@ function userDataservice($http) {
 	}
 
 	function logIn(logIn) {
-    	return $http.post('/order-front/users/logIn', logIn).success(function(data) {
+    	return $http.post('/order-front/rest/users/logIn', logIn).success(function(data) {
     		self.functions.resolveLoggedIn();
     	}).error(function(response) {
     		self.functions.resolveLoggedIn();
@@ -48,7 +48,7 @@ function userDataservice($http) {
 	}
 	
 	function logOut() {
-    	return $http.post('/order-front/users/logOut').success(function(data) {
+    	return $http.post('/order-front/rest/users/logOut').success(function(data) {
     		self.functions.resolveLoggedIn();
     	}).error(function(response) {
     		self.functions.resolveLoggedIn();
@@ -56,7 +56,7 @@ function userDataservice($http) {
 	}
 
 	function changePassword(newPassword) {
-    	return $http.post('/order-front/users', newPassword).success(function(data) {
+    	return $http.post('/order-front/rest/users', newPassword).success(function(data) {
     		return;
     	}).error(function(response) {
     		return;
@@ -64,7 +64,7 @@ function userDataservice($http) {
 	}
 	
 	function deleteUser() {
-    	return $http.delete('/order-front/users').success(function(data) {
+    	return $http.delete('/order-front/rest/users').success(function(data) {
     		self.functions.resolveLoggedIn();
     	}).error(function(response) {
     		self.functions.resolveLoggedIn();

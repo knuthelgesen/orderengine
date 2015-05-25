@@ -74,6 +74,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     		gameDataservice.getGame($stateParams.gameId).then(function(data) {
     			$scope.game = data.data;
     		});
+    		
+    		var exampleSocket = new WebSocket("ws://192.168.33.102:7101/ws/order");
+    		console.log(exampleSocket);
+//    		exampleSocket.send("Her er masse tekst");
+
     	}    	
     })
     

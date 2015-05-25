@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
@@ -16,8 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import no.plasmid.order.usermanagement.im.UserEntity;
 
-@ManagedBean
-@Resource
 public class UserDAO {
 	
 	private final static String QUERY_SELECT_USER_BY_ID		= "SELECT * FROM users WHERE users.user_id = ?";

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -19,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ManagedBean
 @Resource
 public class GameManagementService {
 

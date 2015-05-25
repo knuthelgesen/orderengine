@@ -5,8 +5,6 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import no.plasmid.order.usermanagement.dao.UserDAO;
@@ -18,8 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@ManagedBean
-@Resource
 public class UserManagementService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserManagementService.class);

@@ -13,16 +13,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameEntity;
 
-@ManagedBean
-@Resource
 public class GameDAO {
 
 	private final static String QUERY_INSERT_GAME_ID			= "INSERT INTO game_id_seq () VALUES ()";

@@ -1,6 +1,6 @@
 package no.plasmid.order.rest;
 
-import static no.plasmid.order.rest.UserUtils.*;
+import static no.plasmid.order.rest.users.UserUtils.*;
 
 import java.util.ArrayList;
 import java.util.List;

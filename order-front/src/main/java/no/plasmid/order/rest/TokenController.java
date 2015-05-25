@@ -1,6 +1,6 @@
 package no.plasmid.order.rest;
 
-import static no.plasmid.order.rest.UserUtils.*;
+import static no.plasmid.order.rest.users.UserUtils.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import no.plasmid.order.exception.AccessDeniedException;
+import no.plasmid.order.rest.users.UserUtils;
 import no.plasmid.order.utils.CSRFUtils;
 import no.plasmid.order.utils.WSTokenUtils;
 

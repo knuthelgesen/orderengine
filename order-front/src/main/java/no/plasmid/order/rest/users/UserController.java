@@ -1,6 +1,6 @@
 package no.plasmid.order.rest.users;
 
-import static no.plasmid.order.rest.UserUtils.*;
+import static no.plasmid.order.rest.users.UserUtils.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

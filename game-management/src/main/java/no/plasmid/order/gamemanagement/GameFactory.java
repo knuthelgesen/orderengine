@@ -2,6 +2,9 @@ package no.plasmid.order.gamemanagement;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import no.plasmid.order.gamemanagement.game.tictactoe.CPUPlayer;
 import no.plasmid.order.gamemanagement.game.tictactoe.HumanPlayer;
 import no.plasmid.order.gamemanagement.game.tictactoe.TicTacToe;
@@ -10,7 +13,17 @@ import no.plasmid.order.gamemanagement.model.Player;
 
 public class GameFactory {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(GameFactory.class);
+	
+	/* *********************************************************************************
+	 * Tic tac toe keys and values
+	 ***********************************************************************************/
+	private static final String USER_COLOR_KEY	= "userColor";
+	private static final String BLUE_VALUE	= "blue";
+	
 	public static Game create(Integer gameId, Integer creatorId, String gameType, Map<String, String> gameData) {
+		LOGGER.debug("Atempting to create game of type " + gameType);
+		
 		switch (gameType) {
 			case "tic_tac_toe":
 				return createTickTackToe(gameId, creatorId, gameData);
@@ -20,13 +33,13 @@ public class GameFactory {
 	}
 
 	private static Game createTickTackToe(Integer gameId, Integer creatorId, Map<String, String> gameData) {
-		if (!gameData.containsKey("userColor")) { throw new IllegalArgumentException("No user color selected"); }
+		if (!gameData.containsKey(USER_COLOR_KEY)) { throw new IllegalArgumentException("No user color selected"); }
 		
 		TicTacToe game;
 
 		Player humanPlayer = new HumanPlayer(creatorId);
 		Player cpuPlayer = new CPUPlayer();
-		if (gameData.get("userColor").equals("blue")) {
+		if (gameData.get(USER_COLOR_KEY).equals(BLUE_VALUE)) {
 			game = new TicTacToe(gameId, creatorId, humanPlayer, cpuPlayer);
 		} else {
 			game = new TicTacToe(gameId, creatorId, cpuPlayer, humanPlayer);

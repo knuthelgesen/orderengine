@@ -68,16 +68,23 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     	url : '/ingame/:gameId',
     	templateUrl : '/static/partials/ingame.html',
     	resolve : {
-    		gameDataservice : 'gameDataservice'
+    		gameDataservice : 'gameDataservice',
+    		orderDataservice : 'orderDataservice'
     	},
-    	controller : function($scope, $stateParams, gameDataservice) {
+    	controller : function($scope, $stateParams, gameDataservice, orderDataservice) {
     		gameDataservice.getGame($stateParams.gameId).then(function(data) {
     			$scope.game = data.data;
     		});
     		
-    		var exampleSocket = new WebSocket("ws://192.168.33.102:7101/ws/order");
-    		console.log(exampleSocket);
-//    		exampleSocket.send("Her er masse tekst");
+    		orderDataservice.getWSToken().then(function(data) {
+    			var wsToken = data.data;
+    			
+    			var client = new WebsocketClient('ws://192.168.33.102:7101/order-front/ws/order', wsToken);
+
+    			client.handleMessage = function(message) {
+    				console.log(message);
+    			};
+    		});
 
     	}    	
     })

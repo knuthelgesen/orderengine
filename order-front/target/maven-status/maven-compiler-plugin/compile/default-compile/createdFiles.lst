@@ -18,6 +18,7 @@ no/plasmid/order/exception/AccessDeniedException.class
 no/plasmid/order/websocket/message/MessageTransformer.class
 no/plasmid/order/DataSourceFactory.class
 no/plasmid/order/websocket/WebsocketAdapter.class
+no/plasmid/order/websocket/OrderEndPoint$CheckAuthenticationThread.class
 no/plasmid/order/websocket/message/AuthenticateResponseMessage.class
 no/plasmid/order/exception/IllegalArgumentExceptionMapper.class
 no/plasmid/order/rest/TokenController.class

@@ -64,6 +64,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     	}    	
     })
     
+    /* **********************************************************************************
+     *  Ingame TicTacToe state 
+     ************************************************************************************/
     .state('ingame', {
     	url : '/ingame/:gameId',
     	templateUrl : '/static/partials/ingame.html',
@@ -72,6 +75,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     		orderDataservice : 'orderDataservice'
     	},
     	controller : function($scope, $stateParams, gameDataservice, orderDataservice) {
+    		var client;
+    		
     		gameDataservice.getGame($stateParams.gameId).then(function(data) {
     			$scope.game = data.data;
     		});
@@ -79,14 +84,17 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     		orderDataservice.getWSToken().then(function(data) {
     			var wsToken = data.data;
     			
-    			var client = new WebsocketClient('ws://192.168.33.102:7101/order-front/ws/order', wsToken);
+    			client = new WebsocketClient('ws://192.168.33.102:7101/order-front/ws/order', wsToken);
 
     			client.handleMessage = function(message) {
     				console.log(message);
     			};
     		});
 
-    	}    	
+    		$scope.boardClick = function(index) {
+    			client.sendMessage(new IssueOrderMessage());
+    		};
+    	}
     })
     
     /* **********************************************************************************

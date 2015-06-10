@@ -7,6 +7,7 @@ import javax.websocket.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.websocket.message.Message;
 import no.plasmid.order.websocket.message.MessageTransformer;
 import no.plasmid.order.websocket.messagehandler.MessageHandlerFactory;
@@ -18,6 +19,7 @@ public class WebsocketAdapter {
 	public static final String USER_PROPERTY_USER	= "user";
 
 	private final Session session;
+	private User user;
 	
 	public WebsocketAdapter(Session session) {
 		this.session = session;
@@ -25,6 +27,14 @@ public class WebsocketAdapter {
 
 	public Session getSession() {
 		return session;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void handleIncommingMessage(Message message) {

@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.utils.WSTokenUtils;
 import no.plasmid.order.websocket.WebsocketAdapter;
-import no.plasmid.order.websocket.WebsocketAdapterRepository;
 import no.plasmid.order.websocket.message.AuthenticateMessage;
 import no.plasmid.order.websocket.message.AuthenticateResponseMessage;
 import no.plasmid.order.websocket.message.Message;
@@ -25,8 +24,7 @@ public class AuthenticateMessageHandler implements MessageHandler {
 		User user = WSTokenUtils.checkToken(message.getWsToken());
 		
 		if (null != user) {
-			adapter.getSession().getUserProperties().put(WebsocketAdapter.USER_PROPERTY_USER, user);
-			WebsocketAdapterRepository.getInstance().addAdapter(adapter);
+			adapter.setUser(user);
 			adapter.handleOutgoingMessage(new AuthenticateResponseMessage(true));
 		} else {
 			adapter.handleOutgoingMessage(new AuthenticateResponseMessage(true));

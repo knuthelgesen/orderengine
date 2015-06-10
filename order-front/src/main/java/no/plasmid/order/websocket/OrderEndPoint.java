@@ -44,11 +44,7 @@ public class OrderEndPoint {
 	@OnClose
 	public void onClose(final Session session, final CloseReason reason) {
 		LOGGER.debug("Connection closed");
-		User user = (User) session.getUserProperties().get(WebsocketAdapter.USER_PROPERTY_USER);
-		if (null != user) {
-			LOGGER.debug("Removing adapter for user " + user.getUserName());
-			WebsocketAdapterRepository.getInstance().removeAdapter(user);
-		}
+		WebsocketAdapterRepository.getInstance().removeAdapter(session);
 	}
 	
 	/*
@@ -75,7 +71,8 @@ public class OrderEndPoint {
 			}
 			
 			//Check that the user is authenticated
-			if (null == session.getUserProperties().get(WebsocketAdapter.USER_PROPERTY_USER) && session.isOpen()) {
+			User user = WebsocketAdapterRepository.getInstance().getOrCreateAdapter(session).getUser();
+			if (null == user && session.isOpen()) {
 				try {
 					//No? Then close the session
 					LOGGER.debug("User not authenticated. Will close session");

@@ -16,7 +16,6 @@ no/plasmid/order/rest/users/ChangePasswordJSON.class
 no/plasmid/order/Application.class
 no/plasmid/order/exception/AccessDeniedException.class
 no/plasmid/order/websocket/message/MessageTransformer.class
-no/plasmid/order/DataSourceFactory.class
 no/plasmid/order/websocket/WebsocketAdapter.class
 no/plasmid/order/websocket/OrderEndPoint$CheckAuthenticationThread.class
 no/plasmid/order/websocket/message/AuthenticateResponseMessage.class
@@ -24,9 +23,13 @@ no/plasmid/order/exception/IllegalArgumentExceptionMapper.class
 no/plasmid/order/rest/TokenController.class
 no/plasmid/order/rest/CreateGameJson.class
 no/plasmid/order/rest/users/UserController.class
+no/plasmid/order/websocket/message/EnterGameMessage.class
+no/plasmid/order/websocket/messagehandler/EnterGameMessageHandler.class
 no/plasmid/order/utils/WSTokenUtils.class
+no/plasmid/order/websocket/message/IssueOrderMessage.class
 no/plasmid/order/exception/AccessDeniedExceptionMapper.class
 no/plasmid/order/utils/WSTokenUtils$WSToken.class
+no/plasmid/order/websocket/messagehandler/IssueOrderMessageHandler.class
 no/plasmid/order/exception/GameNotFoundExceptionMapper.class
 no/plasmid/order/utils/WSTokenUtils$WSTokenMap.class
 no/plasmid/order/websocket/messagehandler/MessageHandler.class

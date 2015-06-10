@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import no.plasmid.order.persistence.AbstractDAO;
 import no.plasmid.order.usermanagement.im.UserEntity;
 
-public class UserDAO {
+public class UserDAO extends AbstractDAO {
 	
 	private final static String QUERY_SELECT_USER_BY_ID		= "SELECT * FROM users WHERE users.user_id = ?";
 	private final static String QUERY_SELECT_USER_BY_NAME	= "SELECT * FROM users WHERE users.user_name = ?";
@@ -29,8 +29,11 @@ public class UserDAO {
 	
 	private static Logger LOGGER = LoggerFactory.getLogger(UserDAO.class);
 	
-	@Inject
 	DataSource datasource;
+	
+	public UserDAO() {
+		datasource = getDataSource();
+	}
 	
   public UserEntity readUser(Integer userId) throws SQLException {
   	try (Connection connection = datasource.getConnection();

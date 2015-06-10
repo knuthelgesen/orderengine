@@ -22,8 +22,6 @@ public class OrderEndPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderEndPoint.class);
 	
 	private static final long AUTHENTICATION_TIME_LIMIT	= 5000L;
-
-	private static final String USER_PROPERTY_USER	= "user";
 	
 	@OnOpen
 	public void onOpen(Session session) {
@@ -46,7 +44,7 @@ public class OrderEndPoint {
 	@OnClose
 	public void onClose(final Session session, final CloseReason reason) {
 		LOGGER.debug("Connection closed");
-		User user = (User) session.getUserProperties().get(USER_PROPERTY_USER);
+		User user = (User) session.getUserProperties().get(WebsocketAdapter.USER_PROPERTY_USER);
 		if (null != user) {
 			LOGGER.debug("Removing adapter for user " + user.getUserName());
 			WebsocketAdapterRepository.getInstance().removeAdapter(user);
@@ -77,7 +75,7 @@ public class OrderEndPoint {
 			}
 			
 			//Check that the user is authenticated
-			if (null == session.getUserProperties().get(USER_PROPERTY_USER) && session.isOpen()) {
+			if (null == session.getUserProperties().get(WebsocketAdapter.USER_PROPERTY_USER) && session.isOpen()) {
 				try {
 					//No? Then close the session
 					LOGGER.debug("User not authenticated. Will close session");

@@ -20,13 +20,27 @@ AuthenticateMessage.prototype = Object.create(Message.prototype);
 AuthenticateMessage.prototype.constructor = AuthenticateMessage;
 
 /* *********************************************************************************
+ * EnterGame message class
+ ***********************************************************************************/
+//Define constructor
+function EnterGameMessage(gameId) {
+	Message.call(this, 'enterGame');
+	
+	this.gameId = gameId;
+};
+//EnterGame prototype
+EnterGameMessage.prototype = Object.create(Message.prototype);
+//Set constructor to point to "EnterGameMessage"
+EnterGameMessage.prototype.constructor = EnterGameMessage;
+
+/* *********************************************************************************
  * IssueOrder message class
  ***********************************************************************************/
 //Define constructor
 function IssueOrderMessage() {
 	Message.call(this, 'issueOrder');
 };
-//Authenticate prototype
+//IssueOrder prototype
 IssueOrderMessage.prototype = Object.create(Message.prototype);
 //Set constructor to point to "IssueOrderMessage"
 IssueOrderMessage.prototype.constructor = IssueOrderMessage;

@@ -8,6 +8,7 @@
   <name>OrderEngine Master</name>
   
   <modules>
+		<module>persistence</module>
 		<module>user-management</module>
 		<module>game-management</module>
 		<module>order-front</module>

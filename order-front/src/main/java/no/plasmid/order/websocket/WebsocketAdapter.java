@@ -15,6 +15,8 @@ public class WebsocketAdapter {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebsocketAdapter.class);
 	
+	public static final String USER_PROPERTY_USER	= "user";
+
 	private final Session session;
 	
 	public WebsocketAdapter(Session session) {

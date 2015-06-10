@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 
 import no.plasmid.order.gamemanagement.dao.GameDAO;
 import no.plasmid.order.gamemanagement.model.Game;
@@ -23,8 +22,11 @@ public class GameManagementService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameManagementService.class);
 	
-	@Inject
 	private GameDAO gameDAO;
+	
+	public GameManagementService() {
+		gameDAO = new GameDAO();
+	}
 	
 	public List<Game> getGames(User creator) throws GameManagementException {
 		LOGGER.debug("Start get games");
@@ -44,13 +46,12 @@ public class GameManagementService {
 		
 	}
 
-	public Game getGame(Integer gameId, User creator) throws GameManagementException, GameNotFoundException {
+	public Game getGame(Integer gameId) throws GameManagementException, GameNotFoundException {
 		LOGGER.debug("Start get game");
 		
 		try {
 			GameEntity gameEntity = gameDAO.readGame(gameId);
 			if (null == gameEntity) {throw new GameNotFoundException();}
-			if (!gameEntity.getCreatedBy().equals(creator.getUserId())) {throw new GameNotFoundException();}
 			
 			LOGGER.debug("End get game");		
 			return gameEntity.getGame();

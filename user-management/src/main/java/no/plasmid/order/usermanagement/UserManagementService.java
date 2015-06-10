@@ -5,8 +5,6 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 
-import javax.inject.Inject;
-
 import no.plasmid.order.usermanagement.dao.UserDAO;
 import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.usermanagement.im.UserEntity;
@@ -29,9 +27,12 @@ public class UserManagementService {
 		}
 	}
 	
-	@Inject
-  private UserDAO userDao;
+  private UserDAO userDAO;
 
+	public UserManagementService() {
+		userDAO = new UserDAO();
+	}
+	
   public User createUser(String userName, String password, String roleName) throws UserManagementException {
   	LOGGER.debug("Start create user");
     if (StringUtils.isEmpty(userName)) {
@@ -45,15 +46,15 @@ public class UserManagementService {
     }
     
 		try {
-			UserEntity user = userDao.readUser(userName);
+			UserEntity user = userDAO.readUser(userName);
 			if (null != user) {
 	      throw new IllegalArgumentException("User already exists!");
 			}
 
 	    //Create and store the new user
-			Integer userId = userDao.createUser(new UserEntity(null, userName, PasswordHash.createHash(password), roleName));
+			Integer userId = userDAO.createUser(new UserEntity(null, userName, PasswordHash.createHash(password), roleName));
 	  	LOGGER.debug("End create user");
-	    return generateUserFromEntity(userDao.readUser(userId));
+	    return generateUserFromEntity(userDAO.readUser(userId));
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException | SQLException e) {
 			throw new UserManagementException(e);
 		}
@@ -69,7 +70,7 @@ public class UserManagementService {
       throw new IllegalArgumentException("Password can not be null!");
     }
     try {
-      UserEntity userEntity = userDao.readUser(userName);
+      UserEntity userEntity = userDAO.readUser(userName);
       if (null != userEntity) {
       	if (PasswordHash.validatePassword(password, userEntity.getHashedPassword())) {
         	rc = generateUserFromEntity(userEntity);
@@ -90,8 +91,8 @@ public class UserManagementService {
     }
 
     try {
-      UserEntity userEntity = userDao.readUser(userName);
-			userDao.deleteUser(userEntity);
+      UserEntity userEntity = userDAO.readUser(userName);
+			userDAO.deleteUser(userEntity);
 		} catch (SQLException e) {
 			throw new UserManagementException(e);
 		}
@@ -113,15 +114,15 @@ public class UserManagementService {
 
     //Change the user
 		try {
-			UserEntity user = userDao.readUser(userName);
+			UserEntity user = userDAO.readUser(userName);
 			if (null == user) {
 	      throw new IllegalArgumentException("User not found!");
 			}
 	    user.setHashedPassword(PasswordHash.createHash(password));
 	    user.setRoleName(roleName);
-	    userDao.updateUser(user);
+	    userDAO.updateUser(user);
 	  	LOGGER.debug("End change user");
-	    return generateUserFromEntity(userDao.readUser(user.getUserId()));
+	    return generateUserFromEntity(userDAO.readUser(user.getUserId()));
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException | SQLException e) {
 			throw new UserManagementException(e);
 		}

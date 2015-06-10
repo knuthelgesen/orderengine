@@ -2,7 +2,6 @@ package no.plasmid.order.rest.users;
 
 import static no.plasmid.order.rest.users.UserUtils.*;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,8 +32,11 @@ public class UserController {
 
 	private static final String	DEFAULT_ROLE_NAME	= "user";
 
-	@Inject
 	UserManagementService userManagementService;
+	
+	public UserController() {
+		userManagementService = new UserManagementService();
+	}
 	
 	@GET
 	@Path("loggedIn")

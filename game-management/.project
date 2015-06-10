@@ -3,6 +3,7 @@
   <name>game-management</name>
   <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
+    <project>persistence</project>
     <project>user-management</project>
   </projects>
   <buildSpec>

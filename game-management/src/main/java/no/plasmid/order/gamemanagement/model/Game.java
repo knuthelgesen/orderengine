@@ -3,6 +3,7 @@ package no.plasmid.order.gamemanagement.model;
 import java.io.Serializable;
 
 import no.plasmid.order.gamemanagement.order.OrderListener;
+import no.plasmid.order.usermanagement.im.User;
 
 public abstract class Game implements Serializable, OrderListener {
 
@@ -26,5 +27,7 @@ public abstract class Game implements Serializable, OrderListener {
 	}
 	
 	public abstract GameJson toJson();
+	
+	public abstract Player getPlayer(User user);
 	
 }

@@ -18,6 +18,11 @@
   <dependencies>
   	<dependency>
   		<groupId>no.plasmid.order</groupId>
+  		<artifactId>persistence</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>no.plasmid.order</groupId>
   		<artifactId>user-management</artifactId>
   		<version>${project.version}</version>
   	</dependency>

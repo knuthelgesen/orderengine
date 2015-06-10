@@ -10,6 +10,12 @@
   </parent>
   
   <dependencies>
+  	<dependency>
+  		<groupId>no.plasmid.order</groupId>
+  		<artifactId>persistence</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>

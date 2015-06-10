@@ -13,13 +13,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameEntity;
+import no.plasmid.order.persistence.AbstractDAO;
 
-public class GameDAO {
+public class GameDAO extends AbstractDAO {
 
 	private final static String QUERY_INSERT_GAME_ID			= "INSERT INTO game_id_seq () VALUES ()";
 
@@ -32,11 +32,14 @@ public class GameDAO {
 	private final static String COLUMN_CREATED_BY			= "created_by";
 	private final static String COLUMN_GAME_DATA			= "game_data";
 	
-	@Inject
-	private DataSource datasource;
+	private DataSource dataSource;
 
+	public GameDAO() {
+		dataSource = getDataSource();
+	}
+	
 	public Integer createGameId() throws SQLException {
-  	try (Connection connection = datasource.getConnection();
+  	try (Connection connection = dataSource.getConnection();
   			PreparedStatement statement = connection.prepareStatement(QUERY_INSERT_GAME_ID, Statement.RETURN_GENERATED_KEYS);){
 	  		
 			statement.execute();
@@ -54,7 +57,7 @@ public class GameDAO {
 	}
 	
 	public GameEntity readGame(Integer gameId) throws SQLException {
-  	try (Connection connection = datasource.getConnection();
+  	try (Connection connection = dataSource.getConnection();
   			PreparedStatement statement = connection.prepareStatement(QUERY_SELECT_GAME_BY_ID, Statement.NO_GENERATED_KEYS);){
 			statement.setInt(1, gameId);
 	  	
@@ -71,7 +74,7 @@ public class GameDAO {
 	}
 	
 	public List<GameEntity> readGames(Integer creatorId) throws SQLException {
-  	try (Connection connection = datasource.getConnection();
+  	try (Connection connection = dataSource.getConnection();
   			PreparedStatement statement = connection.prepareStatement(QUERY_SELECT_GAMES_BY_CREATOR_ID, Statement.NO_GENERATED_KEYS);){
   		statement.setInt(1, creatorId);
   		
@@ -89,7 +92,7 @@ public class GameDAO {
 	}
 
 	public void createGame(GameEntity gameEntity) throws SQLException {
-  	try (Connection connection = datasource.getConnection();
+  	try (Connection connection = dataSource.getConnection();
   			PreparedStatement statement = connection.prepareStatement(QUERY_INSERT_GAME, Statement.NO_GENERATED_KEYS);){
 
   		Blob blob = connection.createBlob();

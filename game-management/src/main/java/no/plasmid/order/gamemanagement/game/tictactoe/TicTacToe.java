@@ -4,6 +4,7 @@ import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameJson;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.order.Order;
+import no.plasmid.order.usermanagement.im.User;
 
 public class TicTacToe extends Game {
 
@@ -46,6 +47,18 @@ public class TicTacToe extends Game {
 		rc.setGameId(getGameId());
 		rc.setCreatorId(getCreatorId());
 		
+		return rc;
+	}
+
+	@Override
+	public Player getPlayer(User user) {
+		Player rc = null;
+		if (oPlayer instanceof HumanPlayer && ((HumanPlayer) oPlayer).getUserId() == user.getUserId()) {
+			rc = oPlayer;
+		}
+		if (xPlayer instanceof HumanPlayer && ((HumanPlayer) xPlayer).getUserId() == user.getUserId()) {
+			rc = xPlayer;
+		}
 		return rc;
 	}
 

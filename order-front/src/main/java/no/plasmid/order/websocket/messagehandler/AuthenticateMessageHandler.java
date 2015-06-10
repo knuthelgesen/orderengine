@@ -15,8 +15,6 @@ public class AuthenticateMessageHandler implements MessageHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticateMessageHandler.class);
 
-	private static final String USER_PROPERTY_USER	= "user";
-
 	@Override
 	public void handleMessage(Message message, WebsocketAdapter adapter) {
 		handleMessage((AuthenticateMessage)message, adapter);
@@ -27,7 +25,7 @@ public class AuthenticateMessageHandler implements MessageHandler {
 		User user = WSTokenUtils.checkToken(message.getWsToken());
 		
 		if (null != user) {
-			adapter.getSession().getUserProperties().put(USER_PROPERTY_USER, user);
+			adapter.getSession().getUserProperties().put(WebsocketAdapter.USER_PROPERTY_USER, user);
 			WebsocketAdapterRepository.getInstance().addAdapter(adapter);
 			adapter.handleOutgoingMessage(new AuthenticateResponseMessage(true));
 		} else {

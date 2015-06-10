@@ -13,6 +13,10 @@ public class MessageHandlerFactory {
 		switch (messageType) {
 		case "authenticate":
 			return createAuthenticateMessageHandler();
+		case "enterGame":
+			return createEnterGameMessageHandler();
+		case "issueOrder":
+			return createIssueOrderMessageHandler();
 		default:
 			throw new IllegalArgumentException("Unknown message type: " + messageType);
 		}
@@ -22,4 +26,12 @@ public class MessageHandlerFactory {
 		return new AuthenticateMessageHandler();
 	}
 	
+	private static MessageHandler createEnterGameMessageHandler() {
+		return new EnterGameMessageHandler();
+	}
+
+	private static MessageHandler createIssueOrderMessageHandler() {
+		return new IssueOrderMessageHandler();
+	}
+
 }

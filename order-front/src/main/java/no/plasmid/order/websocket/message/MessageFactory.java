@@ -14,6 +14,11 @@ public class MessageFactory {
 	 * Authenticate keys and values
 	 ***********************************************************************************/
 	private static final String WS_TOKEN_KEY	= "wsToken";
+
+	/* *********************************************************************************
+	 * EnterGame keys and values
+	 ***********************************************************************************/
+	private static final String GAME_ID_KEY	= "gameId";
 	
 	public static Message create(JSONObject jsonObject) {
 		if (!jsonObject.has(MESSAGE_TYPE_KEY)) { throw new IllegalArgumentException("No message type in JSON"); }
@@ -25,6 +30,10 @@ public class MessageFactory {
 		switch (messageType) {
 		case "authenticate":
 			return createAuthenticate(jsonObject);
+		case "enterGame":
+			return createEnterGame(jsonObject);
+		case "issueOrder":
+			return createIssueOrder(jsonObject);
 		default:
 			throw new IllegalArgumentException("Unknown message type: " + messageType);
 		}
@@ -36,4 +45,14 @@ public class MessageFactory {
 		return new AuthenticateMessage(jsonObject.getString(WS_TOKEN_KEY));
 	}
 	
+	private static Message createEnterGame(JSONObject jsonObject) {
+		if (!jsonObject.has(GAME_ID_KEY)) { throw new IllegalArgumentException("No game ID"); }
+
+		return new EnterGameMessage(jsonObject.getInt(GAME_ID_KEY));
+	}
+
+	private static Message createIssueOrder(JSONObject jsonObject) {
+		return new IssueOrderMessage();
+	}
+
 }

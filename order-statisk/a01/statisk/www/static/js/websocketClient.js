@@ -13,15 +13,20 @@ var WebsocketClient = function(url, wsToken) {
 		ready = false;
 	};
 	socket.onmessage = function(event) {
-		console.log('Message: ' + event.data);
+		console.log('Received message: ' + event.data);
 		var message = JSON.parse(event.data);
 		if (message.messageType == 'authenticateResponse') {
 			if (message.accepted) {
 				ready = true;
 				console.log('Client authenticated');
+				self.onReady();
 			}
 		}
 		self.handleMessage(message);
+	}
+	
+	this.onReady = function() {
+		console.log('No onReady function registered.');
 	}
 	
 	this.handleMessage = function(message) {
@@ -30,6 +35,7 @@ var WebsocketClient = function(url, wsToken) {
 	
 	this.sendMessage = function(message) {
 		if (!ready) {throw 'Client not ready'}
+		console.log('Sending message: ' + JSON.stringify(message));
 		socket.send(JSON.stringify(message));
 	}
 	

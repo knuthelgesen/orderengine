@@ -86,6 +86,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     			
     			client = new WebsocketClient('ws://192.168.33.102:7101/order-front/ws/order', wsToken);
 
+    			client.onReady = function() {
+    				client.sendMessage(new EnterGameMessage($scope.game.gameId));
+    			};
     			client.handleMessage = function(message) {
     				console.log(message);
     			};

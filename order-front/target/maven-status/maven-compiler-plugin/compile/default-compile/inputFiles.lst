@@ -8,9 +8,11 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/AccessDeniedExceptionMapper.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/GameNotFoundExceptionMapper.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/AuthenticateMessage.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/EnterGameMessage.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/utils/CSRFUtils.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/Application.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/messagehandler/AuthenticateMessageHandler.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/messagehandler/EnterGameMessageHandler.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/AccessDeniedException.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/MessageFactory.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/UserController.java
@@ -20,11 +22,12 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/GameController.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/messagehandler/MessageHandler.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/messagehandler/MessageHandlerFactory.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/IssueOrderMessage.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/Message.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/AuthenticateResponseMessage.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/OrderEndPoint.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/TokenController.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/messagehandler/IssueOrderMessageHandler.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/CSRFTokenFilter.java
-/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/DataSourceFactory.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/ThrowableExceptionMapper.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/exception/IllegalArgumentExceptionMapper.java

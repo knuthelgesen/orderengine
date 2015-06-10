@@ -5,7 +5,6 @@ import static no.plasmid.order.rest.users.UserUtils.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -31,8 +30,11 @@ public class GameController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
 	
-	@Inject
 	GameManagementService gameManagementService;
+	
+	public GameController() {
+		gameManagementService = new GameManagementService();
+	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +58,7 @@ public class GameController {
 		LOGGER.debug("Get game");
 		ensureLoggedInUser(request);
 		
-		Game game = gameManagementService.getGame(gameId, getLoggedInUser(request));
+		Game game = gameManagementService.getGame(gameId);
 		
 		return game.toJson();
 	}

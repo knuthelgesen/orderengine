@@ -20,8 +20,6 @@ public class WebsocketAdapterRepository {
 		return instance;
 	}
 
-	private static final String USER_PROPERTY_USER	= "user";
-	
 	private Map<User, WebsocketAdapter> adapters;
 	
 	private WebsocketAdapterRepository() {
@@ -30,7 +28,7 @@ public class WebsocketAdapterRepository {
 	
 	public WebsocketAdapter getOrCreateAdapter(Session session) {
 		LOGGER.debug("Get or create adapter for session");
-		User user = (User) session.getUserProperties().get(USER_PROPERTY_USER);
+		User user = (User) session.getUserProperties().get(WebsocketAdapter.USER_PROPERTY_USER);
 		WebsocketAdapter rc =  getAdapter(user);
 		if (null == rc) {
 			rc = new WebsocketAdapter(session);
@@ -45,7 +43,7 @@ public class WebsocketAdapterRepository {
 	
 	public void addAdapter(WebsocketAdapter adapter) {
 		LOGGER.debug("Add adapter for user");
-		User user = (User) adapter.getSession().getUserProperties().get(USER_PROPERTY_USER);
+		User user = (User) adapter.getSession().getUserProperties().get(WebsocketAdapter.USER_PROPERTY_USER);
 		if (null == user) {throw new IllegalArgumentException("Will not store adapter with no authenticated user!");}
 		adapters.put(user, adapter);
 	}

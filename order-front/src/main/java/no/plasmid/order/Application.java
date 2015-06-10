@@ -14,7 +14,6 @@ public class Application extends ResourceConfig {
 	public Application() {
 		LOGGER.debug("Start application config");
 		packages(true, "no.plasmid.order");
-		register(new ApplicationBinder());
 	}
 	
 }

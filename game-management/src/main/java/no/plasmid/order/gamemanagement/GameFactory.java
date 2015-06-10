@@ -40,8 +40,10 @@ public class GameFactory {
 		Player humanPlayer = new HumanPlayer(creatorId);
 		Player cpuPlayer = new CPUPlayer();
 		if (gameData.get(USER_COLOR_KEY).equals(BLUE_VALUE)) {
+			LOGGER.debug("User will be blue");
 			game = new TicTacToe(gameId, creatorId, humanPlayer, cpuPlayer);
 		} else {
+			LOGGER.debug("User will be red");
 			game = new TicTacToe(gameId, creatorId, cpuPlayer, humanPlayer);
 		}
 		

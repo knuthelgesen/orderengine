@@ -7,7 +7,7 @@ import no.plasmid.order.gamemanagement.order.Order;
 import no.plasmid.order.usermanagement.im.User;
 
 public class TicTacToe extends Game {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	private Player oPlayer;
@@ -37,7 +37,6 @@ public class TicTacToe extends Game {
 	@Override
 	public void handleOrder(Order order) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -53,10 +52,10 @@ public class TicTacToe extends Game {
 	@Override
 	public Player getPlayer(User user) {
 		Player rc = null;
-		if (oPlayer instanceof HumanPlayer && ((HumanPlayer) oPlayer).getUserId() == user.getUserId()) {
+		if (oPlayer instanceof HumanPlayer && ((HumanPlayer) oPlayer).getUserId().equals(user.getUserId())) {
 			rc = oPlayer;
 		}
-		if (xPlayer instanceof HumanPlayer && ((HumanPlayer) xPlayer).getUserId() == user.getUserId()) {
+		if (xPlayer instanceof HumanPlayer && ((HumanPlayer) xPlayer).getUserId().equals(user.getUserId())) {
 			rc = xPlayer;
 		}
 		return rc;

@@ -24,3 +24,5 @@ package
 
 #Download dir
 download/*
+
+order-front/target/

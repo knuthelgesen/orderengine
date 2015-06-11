@@ -5,11 +5,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import no.plasmid.order.gamemanagement.game.tictactoe.CPUPlayer;
-import no.plasmid.order.gamemanagement.game.tictactoe.HumanPlayer;
-import no.plasmid.order.gamemanagement.game.tictactoe.TicTacToe;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
+import no.plasmid.order.gamemanagement.model.tictactoe.CPUPlayer;
+import no.plasmid.order.gamemanagement.model.tictactoe.HumanPlayer;
+import no.plasmid.order.gamemanagement.model.tictactoe.TicTacToe;
 
 public class GameFactory {
 

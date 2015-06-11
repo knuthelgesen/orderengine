@@ -1,4 +1,4 @@
-package no.plasmid.order.gamemanagement.game.tictactoe;
+package no.plasmid.order.gamemanagement.model.tictactoe;
 
 import no.plasmid.order.gamemanagement.model.GameJson;
 

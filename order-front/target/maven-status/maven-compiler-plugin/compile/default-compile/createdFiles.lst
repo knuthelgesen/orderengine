@@ -3,7 +3,6 @@ no/plasmid/order/websocket/message/MessageFactory.class
 no/plasmid/order/rest/GameController.class
 no/plasmid/order/utils/CSRFUtils.class
 no/plasmid/order/websocket/message/Message.class
-no/plasmid/order/ApplicationBinder.class
 no/plasmid/order/websocket/messagehandler/AuthenticateMessageHandler.class
 no/plasmid/order/utils/WSTokenUtils$1.class
 no/plasmid/order/websocket/message/AuthenticateMessage.class
@@ -12,6 +11,7 @@ no/plasmid/order/websocket/messagehandler/MessageHandlerFactory.class
 no/plasmid/order/websocket/WebsocketAdapterRepository.class
 no/plasmid/order/rest/users/LogInJSON.class
 no/plasmid/order/rest/users/UserUtils.class
+no/plasmid/order/websocket/message/EnterGameResponseMessage.class
 no/plasmid/order/rest/users/ChangePasswordJSON.class
 no/plasmid/order/Application.class
 no/plasmid/order/exception/AccessDeniedException.class

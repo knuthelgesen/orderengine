@@ -11,6 +11,7 @@ import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.websocket.WebsocketAdapter;
 import no.plasmid.order.websocket.WebsocketAdapterRepository;
 import no.plasmid.order.websocket.message.EnterGameMessage;
+import no.plasmid.order.websocket.message.EnterGameResponseMessage;
 import no.plasmid.order.websocket.message.Message;
 
 public class EnterGameMessageHandler implements MessageHandler {
@@ -29,25 +30,23 @@ public class EnterGameMessageHandler implements MessageHandler {
 	}
 	
 	public void handleMessage(EnterGameMessage message, WebsocketAdapter adapter) {
+		Game rc = null;
 		try {
 			//Find the game in question
 			Game game = gameManagementService.getGame(message.getGameId());
-			if (null == game) {
-				throw new GameNotFoundException();
+			if (null != game) {
+				//Check that the user is a player in the game
+				Player player = game.getPlayer(adapter.getUser());
+				if (null != player) {
+					//Register this websocket adapter as the adapter for this player, so messages can be sent to her later
+					WebsocketAdapterRepository.getInstance().registerPlayerAdapter(player, adapter);
+					rc = game;
+				}
 			}
-
-			//Check that the user is a player in the game
-			Player player = game.getPlayer(adapter.getUser());
-			if (null == player) {
-				throw new GameNotFoundException();
-			}
-			
-			//Register this websocket adapter as the adapter for this player, so messages can be sent to her later
-			WebsocketAdapterRepository.getInstance().registerPlayerAdapter(player, adapter);
 		} catch (GameManagementException | GameNotFoundException e) {
-			// TODO Auto-generated catch block
 			LOGGER.error(e.getMessage(), e);
 		}
+		adapter.handleOutgoingMessage(new EnterGameResponseMessage(rc));
 	}
 
 }

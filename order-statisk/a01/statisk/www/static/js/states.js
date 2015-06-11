@@ -77,17 +77,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     	controller : function($scope, $stateParams, gameDataservice, orderDataservice) {
     		var client;
     		
-    		gameDataservice.getGame($stateParams.gameId).then(function(data) {
-    			$scope.game = data.data;
-    		});
-    		
     		orderDataservice.getWSToken().then(function(data) {
     			var wsToken = data.data;
     			
     			client = new WebsocketClient('ws://192.168.33.102:7101/order-front/ws/order', wsToken);
 
     			client.onReady = function() {
-    				client.sendMessage(new EnterGameMessage($scope.game.gameId));
+    				client.sendMessage(new EnterGameMessage($stateParams.gameId));
     			};
     			client.handleMessage = function(message) {
     				console.log(message);

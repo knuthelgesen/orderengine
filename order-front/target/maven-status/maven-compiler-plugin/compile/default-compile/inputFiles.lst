@@ -1,4 +1,5 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/WebsocketAdapterRepository.java
+/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/EnterGameResponseMessage.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/UserUtils.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/MessageTransformer.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/utils/WSTokenUtils.java
@@ -17,7 +18,6 @@
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/message/MessageFactory.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/users/UserController.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/WebsocketAdapter.java
-/share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/ApplicationBinder.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/CreateGameJson.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/rest/GameController.java
 /share/sandboxes/plasmid/orderengine/order-front/src/main/java/no/plasmid/order/websocket/messagehandler/MessageHandler.java

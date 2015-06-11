@@ -3,6 +3,7 @@ package no.plasmid.order.gamemanagement.model.tictactoe;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameJson;
 import no.plasmid.order.gamemanagement.model.Player;
+import no.plasmid.order.gamemanagement.model.View;
 import no.plasmid.order.gamemanagement.order.Order;
 import no.plasmid.order.usermanagement.im.User;
 
@@ -59,6 +60,12 @@ public class TicTacToe extends Game {
 			rc = xPlayer;
 		}
 		return rc;
+	}
+
+	@Override
+	public View<TicTacToe> toView() {
+		// TODO Auto-generated method stub
+		return new TicTacToeView();
 	}
 
 }

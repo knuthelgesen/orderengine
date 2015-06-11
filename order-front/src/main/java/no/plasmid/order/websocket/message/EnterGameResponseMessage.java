@@ -1,19 +1,19 @@
 package no.plasmid.order.websocket.message;
 
-import no.plasmid.order.gamemanagement.model.Game;
+import no.plasmid.order.gamemanagement.model.View;
 
 public class EnterGameResponseMessage extends Message {
 
-	private final Game game;
+	private final View<?> view;
 	
-	public EnterGameResponseMessage(Game game) {
+	public EnterGameResponseMessage(View<?> view) {
 		super("enterGameResponse");
 	
-		this.game = game;
+		this.view = view;
 	}
 
-	public Game getGame() {
-		return game;
+	public View<?> getView() {
+		return view;
 	}
 
 }

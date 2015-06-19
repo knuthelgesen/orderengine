@@ -105,7 +105,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     			}
     		};
     		
-    		$scope.hei = function(index) {
+    		$scope.resolveBoardColor = function(index) {
     			if (!$scope.gameState) {
     				return '';
     			}

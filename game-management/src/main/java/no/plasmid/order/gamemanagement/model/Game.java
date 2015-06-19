@@ -28,7 +28,7 @@ public abstract class Game implements Serializable, OrderListener {
 	
 	public abstract GameJson toJson();
 	
-	public abstract View<?> toView();
+	public abstract View<?> generateViewForPlayer(Player player);
 
 	public abstract Player getPlayer(User user);
 	

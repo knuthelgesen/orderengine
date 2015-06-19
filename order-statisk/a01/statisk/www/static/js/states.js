@@ -75,8 +75,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     		orderDataservice : 'orderDataservice'
     	},
     	controller : function($scope, $stateParams, gameDataservice, orderDataservice) {
+    		var self = this;
     		var client;
-    		
+
     		orderDataservice.getWSToken().then(function(data) {
     			var wsToken = data.data;
     			
@@ -86,14 +87,39 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     				client.sendMessage(new EnterGameMessage($stateParams.gameId));
     			};
     			client.handleMessage = function(message) {
-    				console.log(message);
+    				switch (message.messageType) {
+    				case 'enterGameResponse':
+    					console.log(message.view);
+    					$scope.$apply($scope.gameState = message.view);
+    					break;
+    				default:
+        				console.log(message);
+    					break;
+    				}
     			};
     		});
 
     		$scope.boardClick = function(index) {
-    			client.sendMessage(new IssueOrderMessage());
+    			if ($scope.gameState && !$scope.gameState.board[index]) {
+        			client.sendMessage(new IssueOrderMessage());
+    			}
     		};
-    	}
+    		
+    		$scope.hei = function(index) {
+    			if (!$scope.gameState) {
+    				return '';
+    			}
+    			if (!$scope.gameState.board[index]) {
+        			return '/static/img/element/tictactoe.svg#blank';
+    			}
+    			if ($scope.gameState.board[index].value == 'blue') {
+        			return '/static/img/element/tictactoe.svg#blue';
+    			}
+    			if ($scope.gameState.board[index].value == 'red') {
+        			return '/static/img/element/tictactoe.svg#red';
+    			}
+    		};
+    	},
     })
     
     /* **********************************************************************************

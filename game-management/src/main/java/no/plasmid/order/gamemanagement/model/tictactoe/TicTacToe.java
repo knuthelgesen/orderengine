@@ -11,28 +11,32 @@ public class TicTacToe extends Game {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Player oPlayer;
-	private Player xPlayer;
+	private Player bluePlayer;
+	private Player redPlayer;
 	
-	private Player currentTurn;
+	private Player playerUp;	//The player to make a move
+
+	private PlayerColor[] board;
 	
-	public TicTacToe(Integer gameId, Integer creatorId, Player oPlayer, Player xPlayer) {
+	public TicTacToe(Integer gameId, Integer creatorId, Player bluePlayer, Player redPlayer) {
 		super(gameId, creatorId);
-		this.oPlayer = oPlayer;
-		this.xPlayer = xPlayer;
-		this.currentTurn = oPlayer;
+		this.bluePlayer = bluePlayer;
+		this.redPlayer = redPlayer;
+		this.playerUp = bluePlayer;	//Blue always starts
+		
+		this.board = new PlayerColor[9];
 	}
 
 	public Player getOPlayer() {
-		return oPlayer;
+		return bluePlayer;
 	}
 
 	public Player getXPlayer() {
-		return xPlayer;
+		return redPlayer;
 	}
 	
 	public Player getCurrentTurn() {
-		return currentTurn;
+		return playerUp;
 	}
 
 	@Override
@@ -53,19 +57,58 @@ public class TicTacToe extends Game {
 	@Override
 	public Player getPlayer(User user) {
 		Player rc = null;
-		if (oPlayer instanceof HumanPlayer && ((HumanPlayer) oPlayer).getUserId().equals(user.getUserId())) {
-			rc = oPlayer;
+		if (bluePlayer instanceof HumanPlayer && ((HumanPlayer) bluePlayer).getUserId().equals(user.getUserId())) {
+			rc = bluePlayer;
 		}
-		if (xPlayer instanceof HumanPlayer && ((HumanPlayer) xPlayer).getUserId().equals(user.getUserId())) {
-			rc = xPlayer;
+		if (redPlayer instanceof HumanPlayer && ((HumanPlayer) redPlayer).getUserId().equals(user.getUserId())) {
+			rc = redPlayer;
 		}
 		return rc;
 	}
 
 	@Override
-	public View<TicTacToe> toView() {
-		// TODO Auto-generated method stub
-		return new TicTacToeView();
-	}
+	public View<TicTacToe> generateViewForPlayer(Player player) {
+		String playerColor;
+		if (this.bluePlayer.equals(player)) {
+			playerColor = "blue";
+		} else {
+			playerColor = "red";
+		}
 
+		String playerUp;
+		if (this.playerUp.equals(bluePlayer)) {
+			playerUp = "blue";
+		} else {
+			playerUp = "red";
+		}
+				
+		return new TicTacToeView(playerColor, playerUp, board);
+	}
+	
+	public enum PlayerColor {
+		BLUE("blue"), RED("red");
+		
+		private final String value;
+		
+		public static PlayerColor get(String value) {
+			switch (value) {
+			case "blue":
+				return PlayerColor.BLUE;
+			case "red":
+				return PlayerColor.RED;
+			default:
+				throw new IllegalArgumentException("Unknown value");
+			}
+		}
+		
+		private PlayerColor(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
+		
+	}
+	
 }

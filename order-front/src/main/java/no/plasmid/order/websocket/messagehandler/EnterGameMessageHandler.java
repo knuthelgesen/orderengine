@@ -31,17 +31,20 @@ public class EnterGameMessageHandler implements MessageHandler {
 	}
 	
 	public void handleMessage(EnterGameMessage message, WebsocketAdapter adapter) {
+		LOGGER.debug("Start handling message EnterGame");
 		View<?> rc = null;
 		try {
 			//Find the game in question
 			Game game = gameManagementService.getGame(message.getGameId());
 			if (null != game) {
+				LOGGER.debug("Found game");
 				//Check that the user is a player in the game
 				Player player = game.getPlayer(adapter.getUser());
 				if (null != player) {
+					LOGGER.debug("Found player");
 					//Register this websocket adapter as the adapter for this player, so messages can be sent to her later
 					WebsocketAdapterRepository.getInstance().registerPlayerAdapter(player, adapter);
-					rc = game.toView();
+					rc = game.generateViewForPlayer(player);
 				}
 			}
 		} catch (GameManagementException | GameNotFoundException e) {

@@ -101,7 +101,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 
     		$scope.boardClick = function(index) {
     			if ($scope.gameState && !$scope.gameState.board[index]) {
-        			client.sendMessage(new IssueOrderMessage());
+        			client.sendMessage(new IssueOrderMessage({square: index}));
     			}
     		};
     		

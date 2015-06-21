@@ -37,8 +37,10 @@ EnterGameMessage.prototype.constructor = EnterGameMessage;
  * IssueOrder message class
  ***********************************************************************************/
 //Define constructor
-function IssueOrderMessage() {
+function IssueOrderMessage(orderData) {
 	Message.call(this, 'issueOrder');
+	
+	this.orderData = orderData;
 };
 //IssueOrder prototype
 IssueOrderMessage.prototype = Object.create(Message.prototype);

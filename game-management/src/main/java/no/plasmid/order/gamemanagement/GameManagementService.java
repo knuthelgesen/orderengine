@@ -11,9 +11,12 @@ import javax.annotation.Resource;
 import no.plasmid.order.gamemanagement.dao.GameDAO;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameEntity;
+import no.plasmid.order.gamemanagement.model.Player;
+import no.plasmid.order.gamemanagement.order.Order;
 import no.plasmid.order.usermanagement.im.User;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,17 +50,7 @@ public class GameManagementService {
 	}
 
 	public Game getGame(Integer gameId) throws GameManagementException, GameNotFoundException {
-		LOGGER.debug("Start get game");
-		
-		try {
-			GameEntity gameEntity = gameDAO.readGame(gameId);
-			if (null == gameEntity) {throw new GameNotFoundException();}
-			
-			LOGGER.debug("End get game");		
-			return gameEntity.getGame();
-		} catch (SQLException e) {
-			throw new GameManagementException(e);
-		}
+		return GameContainter.getInstance().getGame(gameId);
 	}
 	
 	public Game createGame(String gameType, Map<String, String> gameData, User creator) throws GameManagementException {
@@ -83,5 +76,22 @@ public class GameManagementService {
     	throw new GameManagementException(e);
 		}
 	}
+
+	public void issueOrder(Integer gameId, User user, JSONObject orderData) throws GameNotFoundException, GameManagementException {
+		LOGGER.debug("Start issue order");
 		
+		Game game = getGame(gameId);
+		Player player = game.getPlayer(user);
+		if (null == player) { throw new IllegalArgumentException("User is not a player in the game"); } 
+		
+		synchronized (game) {
+			//Issue the order
+			Order order = game.issueOrder(player, orderData);
+			//Save it
+			//TODO
+		}
+		
+  	LOGGER.debug("End issue order");
+	}
+	
 }

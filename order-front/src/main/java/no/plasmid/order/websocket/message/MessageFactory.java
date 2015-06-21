@@ -20,6 +20,11 @@ public class MessageFactory {
 	 ***********************************************************************************/
 	private static final String GAME_ID_KEY	= "gameId";
 	
+	/* *********************************************************************************
+	 * IssueOrder keys and values
+	 ***********************************************************************************/
+	private static final String ORDER_DATA_KEY	= "orderData";
+	
 	public static Message create(JSONObject jsonObject) {
 		if (!jsonObject.has(MESSAGE_TYPE_KEY)) { throw new IllegalArgumentException("No message type in JSON"); }
 		//Read the message type
@@ -52,7 +57,9 @@ public class MessageFactory {
 	}
 
 	private static Message createIssueOrder(JSONObject jsonObject) {
-		return new IssueOrderMessage();
+		if (!jsonObject.has(ORDER_DATA_KEY)) { throw new IllegalArgumentException("No order data"); }
+
+		return new IssueOrderMessage(jsonObject.getJSONObject(ORDER_DATA_KEY));
 	}
 
 }

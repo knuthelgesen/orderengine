@@ -18,6 +18,7 @@ public class WebsocketAdapter {
 	
 	private final Session session;
 	private User user;
+	private Integer gameId;
 	
 	public WebsocketAdapter(Session session) {
 		this.session = session;
@@ -54,6 +55,14 @@ public class WebsocketAdapter {
 		}
 		
 		LOGGER.debug("End handle outgoing message of type " + message.getMessageType());
+	}
+
+	public Integer getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(Integer gameId) {
+		this.gameId = gameId;
 	}
 
 }

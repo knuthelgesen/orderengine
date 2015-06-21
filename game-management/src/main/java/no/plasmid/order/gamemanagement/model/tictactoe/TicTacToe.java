@@ -1,5 +1,7 @@
 package no.plasmid.order.gamemanagement.model.tictactoe;
 
+import org.json.JSONObject;
+
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameJson;
 import no.plasmid.order.gamemanagement.model.Player;
@@ -9,8 +11,10 @@ import no.plasmid.order.usermanagement.im.User;
 
 public class TicTacToe extends Game {
 	
-	private static final long serialVersionUID = 1L;
+	private static final String SQUARE_KEY	= "square";
 
+	private static final long serialVersionUID = 1L;
+	
 	private Player bluePlayer;
 	private Player redPlayer;
 	
@@ -41,7 +45,17 @@ public class TicTacToe extends Game {
 
 	@Override
 	public void handleOrder(Order order) {
-		// TODO Auto-generated method stub
+		if (!(order instanceof SelectSquareOrder)) { throw new IllegalArgumentException("Unnsuportet order type"); }
+
+		SelectSquareOrder selectSquareOrder = (SelectSquareOrder)order;
+		
+		board[selectSquareOrder.getSquare()] = selectSquareOrder.getPlayerColor();
+		
+		if (selectSquareOrder.getPlayerColor() == PlayerColor.BLUE) {
+			playerUp = redPlayer;
+		} else {
+			playerUp = bluePlayer;
+		}
 	}
 
 	@Override
@@ -51,18 +65,6 @@ public class TicTacToe extends Game {
 		rc.setGameId(getGameId());
 		rc.setCreatorId(getCreatorId());
 		
-		return rc;
-	}
-
-	@Override
-	public Player getPlayer(User user) {
-		Player rc = null;
-		if (bluePlayer instanceof HumanPlayer && ((HumanPlayer) bluePlayer).getUserId().equals(user.getUserId())) {
-			rc = bluePlayer;
-		}
-		if (redPlayer instanceof HumanPlayer && ((HumanPlayer) redPlayer).getUserId().equals(user.getUserId())) {
-			rc = redPlayer;
-		}
 		return rc;
 	}
 
@@ -83,6 +85,40 @@ public class TicTacToe extends Game {
 		}
 				
 		return new TicTacToeView(playerColor, playerUp, board);
+	}
+	
+	@Override
+	public Player getPlayer(User user) {
+		Player rc = null;
+		if (bluePlayer instanceof HumanPlayer && ((HumanPlayer) bluePlayer).getUserId().equals(user.getUserId())) {
+			rc = bluePlayer;
+		}
+		if (redPlayer instanceof HumanPlayer && ((HumanPlayer) redPlayer).getUserId().equals(user.getUserId())) {
+			rc = redPlayer;
+		}
+		return rc;
+	}
+
+	@Override
+	public Order issueOrder(Player player, JSONObject orderData) {
+		if (!player.equals(playerUp)) { throw new IllegalArgumentException("Not the players turn"); }
+		if (!orderData.has(SQUARE_KEY)) { throw new IllegalArgumentException("No square specified"); }
+		
+		int square = orderData.getInt(SQUARE_KEY);
+		if (null != board[square]) {throw new IllegalArgumentException("Square already filled in"); }
+		
+		PlayerColor playerColor;
+		if (player.equals(bluePlayer)) {
+			playerColor = PlayerColor.BLUE;
+		} else {
+			playerColor = PlayerColor.RED;
+		}
+		
+		
+		SelectSquareOrder rc = new SelectSquareOrder(square, playerColor);
+		handleOrder(rc);
+		
+		return rc;
 	}
 	
 	public enum PlayerColor {
@@ -110,5 +146,5 @@ public class TicTacToe extends Game {
 		}
 		
 	}
-	
+
 }

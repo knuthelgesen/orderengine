@@ -42,6 +42,7 @@ public class EnterGameMessageHandler implements MessageHandler {
 				Player player = game.getPlayer(adapter.getUser());
 				if (null != player) {
 					LOGGER.debug("Found player");
+					adapter.setGameId(game.getGameId());
 					//Register this websocket adapter as the adapter for this player, so messages can be sent to her later
 					WebsocketAdapterRepository.getInstance().registerPlayerAdapter(player, adapter);
 					rc = game.generateViewForPlayer(player);

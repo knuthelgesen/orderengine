@@ -1,5 +1,8 @@
 package no.plasmid.order.gamemanagement.model.tictactoe;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONObject;
 
 import no.plasmid.order.gamemanagement.model.Game;
@@ -121,6 +124,28 @@ public class TicTacToe extends Game {
 		return rc;
 	}
 	
+	@Override
+	public Map<Player, View<? extends Game>> generateViewsForOrder(Order order) {
+		if (!(order instanceof SelectSquareOrder)) { throw new IllegalArgumentException("Unnsuportet order type"); }
+
+		SelectSquareOrder selectSquareOrder = (SelectSquareOrder)order;
+		
+		Map<Player, View<? extends Game>> rc = new HashMap<Player, View<? extends Game>>();
+	
+		PlayerColor playerColorUp;
+		if (selectSquareOrder.getPlayerColor() == PlayerColor.BLUE) {
+			playerColorUp = PlayerColor.RED;
+		} else {
+			playerColorUp = PlayerColor.BLUE;
+		}
+		
+		TicTacToeDeltaView deltaView = new TicTacToeDeltaView(selectSquareOrder.getPlayerColor(), playerColorUp, selectSquareOrder.getSquare());
+		rc.put(bluePlayer, deltaView);
+		rc.put(redPlayer, deltaView);
+		
+		return rc;
+	}
+
 	public enum PlayerColor {
 		BLUE("blue"), RED("red");
 		

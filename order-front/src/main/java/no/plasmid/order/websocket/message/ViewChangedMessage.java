@@ -3,13 +3,13 @@ package no.plasmid.order.websocket.message;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.View;
 
-public class EnterGameResponseMessage extends Message {
+public class ViewChangedMessage extends Message {
 
 	private final View<? extends Game> view;
 	
-	public EnterGameResponseMessage(View<? extends Game> view) {
-		super("enterGameResponse");
-	
+	public ViewChangedMessage(View<? extends Game> view) {
+		super("viewChanged");
+		
 		this.view = view;
 	}
 

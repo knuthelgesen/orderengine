@@ -40,6 +40,12 @@ public class WebsocketAdapterRepository {
 		return rc;
 	}
 	
+	public WebsocketAdapter getAdapter(Player player) {
+		LOGGER.debug("Get adapter for player");
+		WebsocketAdapter rc = playerAdapters.get(player);
+		return rc;
+	}
+	
 	public void registerPlayerAdapter(Player player, WebsocketAdapter adapter) {
 		LOGGER.debug("Adding adapter for player " + player);
 		playerAdapters.put(player, adapter);

@@ -89,8 +89,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     			client.handleMessage = function(message) {
     				switch (message.messageType) {
     				case 'enterGameResponse':
-    					console.log(message.view);
     					$scope.$apply($scope.gameState = message.view);
+    					break;
+    				case 'viewChanged':
+    					$scope.$apply($scope.mergeGameState(message.view));
     					break;
     				default:
         				console.log(message);
@@ -118,6 +120,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     			if ($scope.gameState.board[index].value == 'red') {
         			return '/static/img/element/tictactoe.svg#red';
     			}
+    		};
+    		
+    		$scope.mergeGameState = function(deltaGameState) {
+    			//Set which player is up
+    			if (deltaGameState.playerUp) { $scope.gameState.playerUp = deltaGameState.playerUp; }
+    			
+    			//Set new color on the board
+    			$scope.gameState.board[deltaGameState.square] = deltaGameState.playerColor;
     		};
     	},
     })

@@ -12,6 +12,7 @@ import no.plasmid.order.gamemanagement.dao.GameDAO;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameEntity;
 import no.plasmid.order.gamemanagement.model.Player;
+import no.plasmid.order.gamemanagement.model.View;
 import no.plasmid.order.gamemanagement.order.Order;
 import no.plasmid.order.usermanagement.im.User;
 
@@ -50,6 +51,7 @@ public class GameManagementService {
 	}
 
 	public Game getGame(Integer gameId) throws GameManagementException, GameNotFoundException {
+		LOGGER.debug("Get game");
 		return GameContainter.getInstance().getGame(gameId);
 	}
 	
@@ -77,21 +79,26 @@ public class GameManagementService {
 		}
 	}
 
-	public void issueOrder(Integer gameId, User user, JSONObject orderData) throws GameNotFoundException, GameManagementException {
+	public Map<Player, View<? extends Game>> issueOrder(Integer gameId, User user, JSONObject orderData) throws GameNotFoundException, GameManagementException {
 		LOGGER.debug("Start issue order");
 		
 		Game game = getGame(gameId);
 		Player player = game.getPlayer(user);
 		if (null == player) { throw new IllegalArgumentException("User is not a player in the game"); } 
-		
+
+		Map<Player, View<? extends Game>> rc = null;
 		synchronized (game) {
 			//Issue the order
 			Order order = game.issueOrder(player, orderData);
+			
 			//Save it
 			//TODO
+			
+			//Create a delta view
+			rc = game.generateViewsForOrder(order);
 		}
-		
   	LOGGER.debug("End issue order");
+		return rc;
 	}
 	
 }

@@ -32,16 +32,16 @@ public class GameContainter {
 	}
 	
 	public Game getGame(int gameId) throws GameNotFoundException, GameManagementException {
-		LOGGER.debug("Start get game");
-
+		LOGGER.debug("Get game");
 		if (gameRepository.containsKey(gameId)) { return gameRepository.get(gameId); }
 		
 		try {
+			LOGGER.debug("Did not find game in containter, will try database");
 			GameEntity gameEntity = gameDAO.readGame(gameId);
 			if (null == gameEntity) { throw new GameNotFoundException(); }
 			
+			LOGGER.debug("Found game in database, will add it to containter");
 			gameRepository.put(gameId, gameEntity.getGame());
-			LOGGER.debug("End get game");
 			return gameEntity.getGame();
 		} catch (SQLException e) {
 			throw new GameManagementException(e);

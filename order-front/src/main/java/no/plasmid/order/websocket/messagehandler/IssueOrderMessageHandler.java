@@ -1,15 +1,22 @@
 package no.plasmid.order.websocket.messagehandler;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import no.plasmid.order.gamemanagement.GameManagementException;
 import no.plasmid.order.gamemanagement.GameManagementService;
 import no.plasmid.order.gamemanagement.GameNotFoundException;
+import no.plasmid.order.gamemanagement.model.Game;
+import no.plasmid.order.gamemanagement.model.Player;
+import no.plasmid.order.gamemanagement.model.View;
 import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.websocket.WebsocketAdapter;
+import no.plasmid.order.websocket.WebsocketAdapterRepository;
 import no.plasmid.order.websocket.message.IssueOrderMessage;
 import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.websocket.message.ViewChangedMessage;
 
 public class IssueOrderMessageHandler implements MessageHandler {
 
@@ -33,7 +40,16 @@ public class IssueOrderMessageHandler implements MessageHandler {
 			Integer gameId = adapter.getGameId();
 			if (null != gameId) {
 				try {
-					gameManagementService.issueOrder(gameId, adapter.getUser(), message.getOrderData());
+					//Issue the order, get delta views back
+					Map<Player, View<? extends Game>> deltaViews = gameManagementService.issueOrder(gameId, adapter.getUser(), message.getOrderData());
+					
+					//Send delta views to all players that have entered the game
+					for (Player player : deltaViews.keySet()) {
+						WebsocketAdapter playerAdapter = WebsocketAdapterRepository.getInstance().getAdapter(player);
+						if (null != playerAdapter) {
+							playerAdapter.handleOutgoingMessage(new ViewChangedMessage(deltaViews.get(player)));
+						}
+					}
 				} catch (GameNotFoundException | GameManagementException e) {
 					LOGGER.debug(e.getMessage(), e);
 				}

@@ -33,7 +33,7 @@ public class OrderEndPoint {
 	@OnMessage
 	public void onMessage(final String messageString, final Session session) {
 		LOGGER.debug("Got message " + messageString);
-		WebsocketAdapterRepository.getInstance().getOrCreateAdapter(session).handleIncommingMessage(MessageTransformer.transform(messageString));
+		AdapterRepository.getInstance().getOrCreateAdapter(session).handleIncommingMessage(MessageTransformer.transform(messageString));
 	}
 	
 	@OnError
@@ -44,7 +44,7 @@ public class OrderEndPoint {
 	@OnClose
 	public void onClose(final Session session, final CloseReason reason) {
 		LOGGER.debug("Connection closed");
-		WebsocketAdapterRepository.getInstance().removeAdapter(session);
+		AdapterRepository.getInstance().removeAdapter(session);
 	}
 	
 	/*
@@ -71,7 +71,7 @@ public class OrderEndPoint {
 			}
 			
 			//Check that the user is authenticated
-			User user = WebsocketAdapterRepository.getInstance().getOrCreateAdapter(session).getUser();
+			User user = AdapterRepository.getInstance().getOrCreateAdapter(session).getUser();
 			if (null == user && session.isOpen()) {
 				try {
 					//No? Then close the session

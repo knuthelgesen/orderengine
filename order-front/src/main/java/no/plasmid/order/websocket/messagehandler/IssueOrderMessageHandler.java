@@ -5,15 +5,14 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import no.plasmid.order.Adapter;
 import no.plasmid.order.gamemanagement.GameManagementException;
 import no.plasmid.order.gamemanagement.GameManagementService;
 import no.plasmid.order.gamemanagement.GameNotFoundException;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.model.View;
-import no.plasmid.order.usermanagement.im.User;
-import no.plasmid.order.websocket.WebsocketAdapter;
-import no.plasmid.order.websocket.WebsocketAdapterRepository;
+import no.plasmid.order.websocket.AdapterRepository;
 import no.plasmid.order.websocket.message.IssueOrderMessage;
 import no.plasmid.order.websocket.message.Message;
 import no.plasmid.order.websocket.message.ViewChangedMessage;
@@ -29,24 +28,25 @@ public class IssueOrderMessageHandler implements MessageHandler {
 	}
 	
 	@Override
-	public void handleMessage(Message message, WebsocketAdapter adapter) {
+	public void handleMessage(Message message, Adapter adapter) {
 		handleMessage((IssueOrderMessage)message, adapter);
 	}
 	
-	private void handleMessage(IssueOrderMessage message, WebsocketAdapter adapter) {
+	private void handleMessage(IssueOrderMessage message, Adapter adapter) {
 		LOGGER.debug("Start handling message IssueOrder");
-		User user = adapter.getUser();
-		if (null != user) {
+		Player issuingPlayer = adapter.getPlayer();
+		if (null != issuingPlayer) {
 			Integer gameId = adapter.getGameId();
 			if (null != gameId) {
 				try {
 					//Issue the order, get delta views back
-					Map<Player, View<? extends Game>> deltaViews = gameManagementService.issueOrder(gameId, adapter.getUser(), message.getOrderData());
+					Map<Player, View<? extends Game>> deltaViews = gameManagementService.issueOrder(gameId, issuingPlayer, message.getOrderData());
 					
 					//Send delta views to all players that have entered the game
 					for (Player player : deltaViews.keySet()) {
-						WebsocketAdapter playerAdapter = WebsocketAdapterRepository.getInstance().getAdapter(player);
+						Adapter playerAdapter = AdapterRepository.getInstance().getAdapter(player);
 						if (null != playerAdapter) {
+							LOGGER.debug("Found adapter for player, will send delta view message");
 							playerAdapter.handleOutgoingMessage(new ViewChangedMessage(deltaViews.get(player)));
 						}
 					}
@@ -57,7 +57,7 @@ public class IssueOrderMessageHandler implements MessageHandler {
 				LOGGER.debug("Game ID not found on this session");
 			}
 		} else {
-			LOGGER.debug("User not found on this session");
+			LOGGER.debug("Player not found on this session");
 		}
 	}
 

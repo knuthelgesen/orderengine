@@ -81,14 +81,6 @@
     	<version>1.0</version>
     	<scope>provided</scope>
 		</dependency>
-  
-    <!-- To run javax.websocket in embedded server -->
-<!--     <dependency> -->
-<!--       <groupId>org.eclipse.jetty.websocket</groupId> -->
-<!--       <artifactId>javax-websocket-server-impl</artifactId> -->
-<!--       <version>9.1.2.v20140210</version> -->
-<!--     	<scope>provided</scope> -->
-<!--     </dependency>   -->
 
 		<dependency>
     	<groupId>org.constretto</groupId>

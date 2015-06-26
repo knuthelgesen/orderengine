@@ -3,6 +3,7 @@ package no.plasmid.order.websocket.messagehandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import no.plasmid.order.Adapter;
 import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.utils.WSTokenUtils;
 import no.plasmid.order.websocket.WebsocketAdapter;
@@ -15,8 +16,8 @@ public class AuthenticateMessageHandler implements MessageHandler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticateMessageHandler.class);
 
 	@Override
-	public void handleMessage(Message message, WebsocketAdapter adapter) {
-		handleMessage((AuthenticateMessage)message, adapter);
+	public void handleMessage(Message message, Adapter adapter) {
+		handleMessage((AuthenticateMessage)message, (WebsocketAdapter)adapter);
 	}
 
 	public void handleMessage(AuthenticateMessage message, WebsocketAdapter adapter) {

@@ -25,6 +25,7 @@ public class GameDAO extends AbstractDAO {
 
 	private final static String QUERY_SELECT_GAME_BY_ID						= "SELECT * FROM games WHERE games.game_id = ?";
 	private final static String QUERY_SELECT_GAMES_BY_CREATOR_ID	= "SELECT * FROM games WHERE games.created_by = ?";
+	private final static String QUERY_SELECT_GAMES								= "SELECT * FROM games";
 	private final static String QUERY_INSERT_GAME									= "INSERT INTO games (games.game_id, games.created, games.created_by, games.game_data) VALUES (?, ?, ?, ?)";
 	
 	private final static String COLUMN_GAME_ID				= "game_id";
@@ -73,6 +74,23 @@ public class GameDAO extends AbstractDAO {
 		}
 	}
 	
+	public List<GameEntity> readGames() throws SQLException {
+  	try (Connection connection = dataSource.getConnection();
+  			PreparedStatement statement = connection.prepareStatement(QUERY_SELECT_GAMES, Statement.NO_GENERATED_KEYS);){
+  		
+  		if (!statement.execute()) {
+				throw new SQLException("Could not execute statmement QUERY_SELECT_GAME_BY_ID");
+  		}
+			ResultSet rs = statement.getResultSet();
+			List<GameEntity> rc = createGameEntityListFromResultSet(rs);
+			rs.close();
+  		
+			return rc;
+  	} catch (ClassNotFoundException | IOException e) {
+			throw new SQLException("Could not execute statmement QUERY_SELECT_GAMES_BY_CREATOR_ID", e);
+		}
+	}
+	
 	public List<GameEntity> readGames(Integer creatorId) throws SQLException {
   	try (Connection connection = dataSource.getConnection();
   			PreparedStatement statement = connection.prepareStatement(QUERY_SELECT_GAMES_BY_CREATOR_ID, Statement.NO_GENERATED_KEYS);){
@@ -90,7 +108,7 @@ public class GameDAO extends AbstractDAO {
 			throw new SQLException("Could not execute statmement QUERY_SELECT_GAMES_BY_CREATOR_ID", e);
 		}
 	}
-
+	
 	public void createGame(GameEntity gameEntity) throws SQLException {
   	try (Connection connection = dataSource.getConnection();
   			PreparedStatement statement = connection.prepareStatement(QUERY_INSERT_GAME, Statement.NO_GENERATED_KEYS);){

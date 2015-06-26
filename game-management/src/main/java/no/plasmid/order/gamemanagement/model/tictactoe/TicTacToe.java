@@ -1,12 +1,15 @@
 package no.plasmid.order.gamemanagement.model.tictactoe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
 
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.GameJson;
+import no.plasmid.order.gamemanagement.model.HumanPlayer;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.model.View;
 import no.plasmid.order.gamemanagement.order.Order;
@@ -88,6 +91,14 @@ public class TicTacToe extends Game {
 		}
 				
 		return new TicTacToeView(playerColor, playerUp, board);
+	}
+	
+	@Override
+	public List<Player> getPlayers() {
+		List<Player> rc = new ArrayList<Player>();
+		rc.add(bluePlayer);
+		rc.add(redPlayer);
+		return rc;
 	}
 	
 	@Override

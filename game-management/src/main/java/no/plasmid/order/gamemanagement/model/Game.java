@@ -1,6 +1,7 @@
 package no.plasmid.order.gamemanagement.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -40,7 +41,13 @@ public abstract class Game implements Serializable, OrderListener {
 	 * @return
 	 */
 	public abstract View<?> generateViewForPlayer(Player player);
-
+	
+	/**
+	 * Return a list of all players in the game
+	 * @return
+	 */
+	public abstract List<Player> getPlayers();
+	
 	/**
 	 * Find the {@link Player} for a {@link User} 
 	 * @param user The user to find player from.
@@ -65,5 +72,5 @@ public abstract class Game implements Serializable, OrderListener {
 	 * @return
 	 */
 	public abstract Map<Player, View<? extends Game>> generateViewsForOrder(Order order);
-	
+
 }

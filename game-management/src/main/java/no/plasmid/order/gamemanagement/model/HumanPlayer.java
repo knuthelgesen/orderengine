@@ -1,4 +1,4 @@
-package no.plasmid.order.gamemanagement.model.tictactoe;
+package no.plasmid.order.gamemanagement.model;
 
 import no.plasmid.order.gamemanagement.model.Player;
 
@@ -8,7 +8,9 @@ public class HumanPlayer extends Player {
 
 	private final Integer userId;
 	
-	public HumanPlayer(Integer userId) {
+	public HumanPlayer(String playerId, Integer userId) {
+		super(playerId);
+		
 		this.userId = userId;
 	}
 

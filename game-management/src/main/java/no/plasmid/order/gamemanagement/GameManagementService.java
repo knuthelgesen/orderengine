@@ -32,6 +32,23 @@ public class GameManagementService {
 		gameDAO = new GameDAO();
 	}
 	
+	public List<Game> getGames() throws GameManagementException {
+		LOGGER.debug("Start get games");
+		
+		try {
+			List<GameEntity> entityList = gameDAO.readGames();
+			List<Game> rc = new ArrayList<Game>();
+			for (GameEntity entity : entityList) {
+				rc.add(entity.getGame());
+			}
+			
+			LOGGER.debug("End get games");
+			return rc;
+		} catch (SQLException e) {
+    	throw new GameManagementException(e);
+		}
+	}
+
 	public List<Game> getGames(User creator) throws GameManagementException {
 		LOGGER.debug("Start get games");
 		
@@ -79,17 +96,15 @@ public class GameManagementService {
 		}
 	}
 
-	public Map<Player, View<? extends Game>> issueOrder(Integer gameId, User user, JSONObject orderData) throws GameNotFoundException, GameManagementException {
+	public Map<Player, View<? extends Game>> issueOrder(Integer gameId, Player issuingPlayer, JSONObject orderData) throws GameNotFoundException, GameManagementException {
 		LOGGER.debug("Start issue order");
 		
 		Game game = getGame(gameId);
-		Player player = game.getPlayer(user);
-		if (null == player) { throw new IllegalArgumentException("User is not a player in the game"); } 
 
 		Map<Player, View<? extends Game>> rc = null;
 		synchronized (game) {
 			//Issue the order
-			Order order = game.issueOrder(player, orderData);
+			Order order = game.issueOrder(issuingPlayer, orderData);
 			
 			//Save it
 			//TODO

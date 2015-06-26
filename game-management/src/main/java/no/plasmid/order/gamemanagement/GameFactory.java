@@ -5,10 +5,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import no.plasmid.order.gamemanagement.model.AIPlayer;
 import no.plasmid.order.gamemanagement.model.Game;
+import no.plasmid.order.gamemanagement.model.HumanPlayer;
 import no.plasmid.order.gamemanagement.model.Player;
-import no.plasmid.order.gamemanagement.model.tictactoe.CPUPlayer;
-import no.plasmid.order.gamemanagement.model.tictactoe.HumanPlayer;
 import no.plasmid.order.gamemanagement.model.tictactoe.TicTacToe;
 
 public class GameFactory {
@@ -37,8 +37,8 @@ public class GameFactory {
 		
 		TicTacToe game;
 
-		Player humanPlayer = new HumanPlayer(creatorId);
-		Player cpuPlayer = new CPUPlayer();
+		Player humanPlayer = new HumanPlayer(gameId + "_1", creatorId);
+		Player cpuPlayer = new AIPlayer(gameId + "_2");
 		if (gameData.get(USER_COLOR_KEY).equals(BLUE_VALUE)) {
 			LOGGER.debug("User will be blue");
 			game = new TicTacToe(gameId, creatorId, humanPlayer, cpuPlayer);

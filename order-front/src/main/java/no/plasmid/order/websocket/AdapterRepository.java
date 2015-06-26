@@ -8,25 +8,26 @@ import javax.websocket.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import no.plasmid.order.Adapter;
 import no.plasmid.order.gamemanagement.model.Player;
 
-public class WebsocketAdapterRepository {
+public class AdapterRepository {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WebsocketAdapterRepository.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AdapterRepository.class);
 
-	private static WebsocketAdapterRepository instance = new WebsocketAdapterRepository();
+	private static AdapterRepository instance = new AdapterRepository();
 	
-	public static WebsocketAdapterRepository getInstance() {
+	public static AdapterRepository getInstance() {
 		return instance;
 	}
 
 	private final Map<Session, WebsocketAdapter> sessionAdapters;
-	private final Map<Player, WebsocketAdapter> playerAdapters;	
+	private final Map<String, Adapter> playerAdapters;	//<Player id, Adapter>
 	private final Map<Session, Player> sessionPlayers;
 	
-	private WebsocketAdapterRepository() {
+	private AdapterRepository() {
 		sessionAdapters = new HashMap<Session, WebsocketAdapter>();
-		playerAdapters = new HashMap<Player, WebsocketAdapter>();
+		playerAdapters = new HashMap<String, Adapter>();
 		sessionPlayers = new HashMap<Session, Player>();
 	}
 	
@@ -40,16 +41,15 @@ public class WebsocketAdapterRepository {
 		return rc;
 	}
 	
-	public WebsocketAdapter getAdapter(Player player) {
-		LOGGER.debug("Get adapter for player");
-		WebsocketAdapter rc = playerAdapters.get(player);
+	public Adapter getAdapter(Player player) {
+		LOGGER.debug("Get adapter for player " + player.getPlayerId());
+		Adapter rc = playerAdapters.get(player.getPlayerId());
 		return rc;
 	}
 	
-	public void registerPlayerAdapter(Player player, WebsocketAdapter adapter) {
-		LOGGER.debug("Adding adapter for player " + player);
-		playerAdapters.put(player, adapter);
-		sessionPlayers.put(adapter.getSession(), player);
+	public void registerPlayerAdapter(Player player, Adapter adapter) {
+		LOGGER.debug("Adding adapter for player " + player.getPlayerId());
+		playerAdapters.put(player.getPlayerId(), adapter);
 	}
 	
 	public void removeAdapter(Session session) {
@@ -57,7 +57,7 @@ public class WebsocketAdapterRepository {
 		sessionAdapters.remove(session);
 		Player player = sessionPlayers.remove(session);
 		LOGGER.debug("Found player " + player + ". Removing adapter.");
-		if (null != player) {playerAdapters.remove(player);}
+		if (null != player) {playerAdapters.remove(player.getPlayerId());}
 	}
 	
 }

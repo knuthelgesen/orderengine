@@ -15,6 +15,8 @@ public class MessageHandlerFactory {
 			return createAuthenticateMessageHandler();
 		case "enterGame":
 			return createEnterGameMessageHandler();
+		case "aiEnterGame":
+			return createAIEnterGameMessageHandler();
 		case "issueOrder":
 			return createIssueOrderMessageHandler();
 		default:
@@ -28,6 +30,10 @@ public class MessageHandlerFactory {
 	
 	private static MessageHandler createEnterGameMessageHandler() {
 		return new EnterGameMessageHandler();
+	}
+
+	private static MessageHandler createAIEnterGameMessageHandler() {
+		return new AIEnterGameMessageHandler();
 	}
 
 	private static MessageHandler createIssueOrderMessageHandler() {

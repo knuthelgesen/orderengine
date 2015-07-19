@@ -1,5 +1,8 @@
 package no.plasmid.order.websocket.message;
 
+import no.plasmid.order.message.Message;
+import no.plasmid.order.websocket.message.MessageFactory;
+
 import org.json.JSONObject;
 
 public class MessageTransformer {

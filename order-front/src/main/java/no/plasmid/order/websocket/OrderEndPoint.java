@@ -10,6 +10,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import no.plasmid.order.AdapterRepository;
+import no.plasmid.order.PlayerAdapterRepository;
 import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.websocket.message.MessageTransformer;
 
@@ -44,6 +46,7 @@ public class OrderEndPoint {
 	@OnClose
 	public void onClose(final Session session, final CloseReason reason) {
 		LOGGER.debug("Connection closed");
+		
 		AdapterRepository.getInstance().removeAdapter(session);
 	}
 	

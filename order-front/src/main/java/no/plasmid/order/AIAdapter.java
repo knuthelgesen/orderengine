@@ -3,7 +3,11 @@ package no.plasmid.order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.gamemanagement.ai.AIException;
+import no.plasmid.order.gamemanagement.ai.AIExecutor;
+import no.plasmid.order.websocket.message.EnterGameResponseMessage;
+import no.plasmid.order.message.Message;
+import no.plasmid.order.message.ViewChangedMessage;
 import no.plasmid.order.websocket.messagehandler.MessageHandlerFactory;
 
 public class AIAdapter extends Adapter {
@@ -19,8 +23,30 @@ public class AIAdapter extends Adapter {
 
 	@Override
 	public void handleOutgoingMessage(Message message) {
-		LOGGER.debug("AI adapter asked to handle outgoing message" + message);
-
+		LOGGER.debug("Start handle outgoing message of type " + message.getMessageType());
+		
+		try {
+			switch (message.getMessageType()) {
+			case "enterGameResponse":
+				AIExecutor.getInstance().scheduleEnteredGame(getPlayer(), getGameId(), ((EnterGameResponseMessage)message).getView());
+				break;
+			case "viewChanged":
+				AIExecutor.getInstance().scheduleViewChanged(getPlayer(), getGameId(), ((ViewChangedMessage)message).getView());
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown message type " + message.getMessageType());
+			}
+		
+		} catch (AIException e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		
+		
+		
+		
+		
+//		AIExecutor.getInstance().scheduleAI(message);
+		LOGGER.debug("End handle outgoing message of type " + message.getMessageType());
 	}
 
 }

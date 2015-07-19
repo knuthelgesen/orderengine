@@ -1,4 +1,4 @@
-package no.plasmid.order.websocket;
+package no.plasmid.order;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +8,8 @@ import javax.websocket.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import no.plasmid.order.Adapter;
 import no.plasmid.order.gamemanagement.model.Player;
+import no.plasmid.order.websocket.WebsocketAdapter;
 
 public class AdapterRepository {
 
@@ -22,12 +22,10 @@ public class AdapterRepository {
 	}
 
 	private final Map<Session, WebsocketAdapter> sessionAdapters;
-	private final Map<String, Adapter> playerAdapters;	//<Player id, Adapter>
 	private final Map<Session, Player> sessionPlayers;
 	
 	private AdapterRepository() {
 		sessionAdapters = new HashMap<Session, WebsocketAdapter>();
-		playerAdapters = new HashMap<String, Adapter>();
 		sessionPlayers = new HashMap<Session, Player>();
 	}
 	
@@ -40,24 +38,13 @@ public class AdapterRepository {
 		}
 		return rc;
 	}
-	
-	public Adapter getAdapter(Player player) {
-		LOGGER.debug("Get adapter for player " + player.getPlayerId());
-		Adapter rc = playerAdapters.get(player.getPlayerId());
-		return rc;
-	}
-	
-	public void registerPlayerAdapter(Player player, Adapter adapter) {
-		LOGGER.debug("Adding adapter for player " + player.getPlayerId());
-		playerAdapters.put(player.getPlayerId(), adapter);
-	}
-	
+			
 	public void removeAdapter(Session session) {
 		LOGGER.debug("Remove adapter for session");
 		sessionAdapters.remove(session);
 		Player player = sessionPlayers.remove(session);
 		LOGGER.debug("Found player " + player + ". Removing adapter.");
-		if (null != player) {playerAdapters.remove(player.getPlayerId());}
+		if (null != player) {PlayerAdapterRepository.getInstance().unregisterPlayerAdapter(player);}
 	}
 	
 }

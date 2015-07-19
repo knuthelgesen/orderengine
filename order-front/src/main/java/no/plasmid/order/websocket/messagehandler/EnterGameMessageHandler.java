@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import no.plasmid.order.Adapter;
+import no.plasmid.order.PlayerAdapterRepository;
 import no.plasmid.order.gamemanagement.GameManagementException;
 import no.plasmid.order.gamemanagement.GameManagementService;
 import no.plasmid.order.gamemanagement.GameNotFoundException;
@@ -11,10 +12,10 @@ import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.model.View;
 import no.plasmid.order.websocket.WebsocketAdapter;
-import no.plasmid.order.websocket.AdapterRepository;
 import no.plasmid.order.websocket.message.EnterGameMessage;
 import no.plasmid.order.websocket.message.EnterGameResponseMessage;
-import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.message.Message;
+import no.plasmid.order.messagehandler.MessageHandler;
 
 public class EnterGameMessageHandler implements MessageHandler {
 
@@ -46,7 +47,7 @@ public class EnterGameMessageHandler implements MessageHandler {
 					adapter.setGameId(game.getGameId());
 					adapter.setPlayer(player);
 					//Register this websocket adapter as the adapter for this player, so messages can be sent to her later
-					AdapterRepository.getInstance().registerPlayerAdapter(player, adapter);
+					PlayerAdapterRepository.getInstance().registerPlayerAdapter(player, adapter);
 					rc = game.generateViewForPlayer(player);
 				} else {
 					LOGGER.debug("Player not participating in game " + game.getGameId());

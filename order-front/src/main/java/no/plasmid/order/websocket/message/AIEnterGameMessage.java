@@ -1,6 +1,7 @@
 package no.plasmid.order.websocket.message;
 
 import no.plasmid.order.gamemanagement.model.AIPlayer;
+import no.plasmid.order.message.Message;
 
 public class AIEnterGameMessage extends Message {
 

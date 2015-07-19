@@ -1,4 +1,4 @@
-package no.plasmid.order.websocket.messagehandler;
+package no.plasmid.order.messagehandler;
 
 import java.util.Map;
 
@@ -6,16 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import no.plasmid.order.Adapter;
+import no.plasmid.order.PlayerAdapterRepository;
 import no.plasmid.order.gamemanagement.GameManagementException;
 import no.plasmid.order.gamemanagement.GameManagementService;
 import no.plasmid.order.gamemanagement.GameNotFoundException;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.model.View;
-import no.plasmid.order.websocket.AdapterRepository;
-import no.plasmid.order.websocket.message.IssueOrderMessage;
-import no.plasmid.order.websocket.message.Message;
-import no.plasmid.order.websocket.message.ViewChangedMessage;
+import no.plasmid.order.message.IssueOrderMessage;
+import no.plasmid.order.message.Message;
+import no.plasmid.order.message.ViewChangedMessage;
 
 public class IssueOrderMessageHandler implements MessageHandler {
 
@@ -44,7 +44,7 @@ public class IssueOrderMessageHandler implements MessageHandler {
 					
 					//Send delta views to all players that have entered the game
 					for (Player player : deltaViews.keySet()) {
-						Adapter playerAdapter = AdapterRepository.getInstance().getAdapter(player);
+						Adapter playerAdapter = PlayerAdapterRepository.getInstance().getAdapter(player);
 						if (null != playerAdapter) {
 							LOGGER.debug("Found adapter for player, will send delta view message");
 							playerAdapter.handleOutgoingMessage(new ViewChangedMessage(deltaViews.get(player)));

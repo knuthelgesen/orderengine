@@ -1,5 +1,7 @@
 package no.plasmid.order.websocket.message;
 
+import no.plasmid.order.message.Message;
+
 public class AuthenticateMessage extends Message {
 
 	private String wsToken;

@@ -1,0 +1,9 @@
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/message/ViewChangedMessage.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/messagehandler/IssueOrderMessageHandler.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/message/IssueOrderMessage.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/message/MessageFactory.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/message/Message.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/Adapter.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/message/MessageHandlerFactory.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/PlayerAdapterRepository.java
+/share/sandboxes/plasmid/orderengine/order-message/src/main/java/no/plasmid/order/messagehandler/MessageHandler.java

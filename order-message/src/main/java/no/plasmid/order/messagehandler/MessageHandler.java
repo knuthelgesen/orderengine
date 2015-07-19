@@ -1,7 +1,7 @@
-package no.plasmid.order.websocket.messagehandler;
+package no.plasmid.order.messagehandler;
 
 import no.plasmid.order.Adapter;
-import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.message.Message;
 
 public interface MessageHandler {
 

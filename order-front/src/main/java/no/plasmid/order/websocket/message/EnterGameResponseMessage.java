@@ -2,6 +2,7 @@ package no.plasmid.order.websocket.message;
 
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.View;
+import no.plasmid.order.message.Message;
 
 public class EnterGameResponseMessage extends Message {
 

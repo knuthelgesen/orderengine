@@ -1,9 +1,11 @@
 package no.plasmid.order.websocket.messagehandler;
 
+import no.plasmid.order.messagehandler.MessageHandler;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MessageHandlerFactory {
+public class MessageHandlerFactory extends no.plasmid.order.message.MessageHandlerFactory {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MessageHandlerFactory.class);
 	
@@ -17,10 +19,8 @@ public class MessageHandlerFactory {
 			return createEnterGameMessageHandler();
 		case "aiEnterGame":
 			return createAIEnterGameMessageHandler();
-		case "issueOrder":
-			return createIssueOrderMessageHandler();
 		default:
-			throw new IllegalArgumentException("Unknown message type: " + messageType);
+			return no.plasmid.order.message.MessageHandlerFactory.create(messageType);
 		}
 	}
 
@@ -34,10 +34,6 @@ public class MessageHandlerFactory {
 
 	private static MessageHandler createAIEnterGameMessageHandler() {
 		return new AIEnterGameMessageHandler();
-	}
-
-	private static MessageHandler createIssueOrderMessageHandler() {
-		return new IssueOrderMessageHandler();
 	}
 
 }

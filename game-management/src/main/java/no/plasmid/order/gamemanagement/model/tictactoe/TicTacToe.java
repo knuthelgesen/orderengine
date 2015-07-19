@@ -75,6 +75,11 @@ public class TicTacToe extends Game {
 	}
 
 	@Override
+	public String getType() {
+		return "tic_tac_toe";
+	}
+	
+	@Override
 	public View<TicTacToe> generateViewForPlayer(Player player) {
 		String playerColor;
 		if (this.bluePlayer.equals(player)) {

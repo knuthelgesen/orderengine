@@ -9,7 +9,8 @@ import no.plasmid.order.utils.WSTokenUtils;
 import no.plasmid.order.websocket.WebsocketAdapter;
 import no.plasmid.order.websocket.message.AuthenticateMessage;
 import no.plasmid.order.websocket.message.AuthenticateResponseMessage;
-import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.message.Message;
+import no.plasmid.order.messagehandler.MessageHandler;
 
 public class AuthenticateMessageHandler implements MessageHandler {
 

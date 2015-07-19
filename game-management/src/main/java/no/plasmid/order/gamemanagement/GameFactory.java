@@ -14,6 +14,11 @@ import no.plasmid.order.gamemanagement.model.tictactoe.TicTacToe;
 public class GameFactory {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameFactory.class);
+
+	/* *********************************************************************************
+	 * Game types
+	 ***********************************************************************************/
+	public static final String GAME_TYPE_TIC_TAC_TOE	= "tic_tac_toe";
 	
 	/* *********************************************************************************
 	 * Tic tac toe keys and values
@@ -25,7 +30,7 @@ public class GameFactory {
 		LOGGER.debug("Atempting to create game of type " + gameType);
 		
 		switch (gameType) {
-			case "tic_tac_toe":
+			case GAME_TYPE_TIC_TAC_TOE:
 				return createTickTackToe(gameId, creatorId, gameData);
 			default:
 				throw new IllegalArgumentException("Unknown game type " + gameType);

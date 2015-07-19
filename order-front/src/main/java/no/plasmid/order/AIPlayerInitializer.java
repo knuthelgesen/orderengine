@@ -11,7 +11,6 @@ import no.plasmid.order.gamemanagement.GameManagementService;
 import no.plasmid.order.gamemanagement.model.AIPlayer;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
-import no.plasmid.order.websocket.AdapterRepository;
 import no.plasmid.order.websocket.message.AIEnterGameMessage;
 
 import org.slf4j.Logger;

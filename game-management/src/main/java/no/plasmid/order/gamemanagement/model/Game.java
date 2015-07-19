@@ -31,6 +31,13 @@ public abstract class Game implements Serializable, OrderListener {
 		return creatorId;
 	}
 	
+	/**
+	 * Get the type of game.
+	 * 
+	 * @return
+	 */
+	public abstract String getType();
+
 	public abstract GameJson toJson();
 
 	/**

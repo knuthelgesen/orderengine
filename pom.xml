@@ -10,6 +10,7 @@
   <modules>
 		<module>persistence</module>
 		<module>user-management</module>
+		<module>order-message</module>
 		<module>game-management</module>
 		<module>order-front</module>
   </modules>

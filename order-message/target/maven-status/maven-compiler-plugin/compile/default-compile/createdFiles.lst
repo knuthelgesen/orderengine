@@ -1,9 +1,0 @@
-no/plasmid/order/message/Message.class
-no/plasmid/order/messagehandler/IssueOrderMessageHandler.class
-no/plasmid/order/message/IssueOrderMessage.class
-no/plasmid/order/Adapter.class
-no/plasmid/order/message/MessageFactory.class
-no/plasmid/order/message/MessageHandlerFactory.class
-no/plasmid/order/messagehandler/MessageHandler.class
-no/plasmid/order/message/ViewChangedMessage.class
-no/plasmid/order/PlayerAdapterRepository.class

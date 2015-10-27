@@ -35,10 +35,11 @@ Vagrant.configure("2") do |config|
   config.vm.define :order2 do |order2|
       
       order2.vm.box = "order"
-#      order2.vm.box_url ="http://jenkins.usrv.ubergenkom.no/boxes/precise64.box"
-      order2.vm.hostname="order2"
+#      order2.vm.box = "ubuntu/vivid64"
+#      order2.vm.hostname="order2"
+      order2.vm.provision :shell, inline: "hostnamectl set-hostname order2"
 #      order2.vm.synced_folder "order-statisk/a01/statisk", "/a01/statisk", :owner => "vagrant", :mount_options => [ "dmode=775", "fmode=774" ]
-      order2.vm.synced_folder "user-store/order", "/var/user-store/order", :owner => "order", :mount_options => [ "dmode=775", "fmode=774" ], create: true
+#      order2.vm.synced_folder "user-store/order", "/var/user-store/order", :owner => "order", :mount_options => [ "dmode=775", "fmode=774" ], create: true
 #      order2.vm.synced_folder "skjema", "/var/skjema", :owner => "order", :mount_options => [ "dmode=775", "fmode=774" ], create: true
       order2.vm.network :forwarded_port,
               guest: 22,

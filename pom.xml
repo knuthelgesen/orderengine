@@ -8,11 +8,11 @@
   <name>OrderEngine Master</name>
   
   <modules>
-		<module>persistence</module>
-		<module>user-management</module>
-		<module>order-message</module>
-		<module>game-management</module>
-		<module>order-front</module>
+		<module>platform/order-message</module>
+		<module>order-appserver/persistence</module>
+		<module>order-appserver/user-management</module>
+		<module>order-appserver/game-management</module>
+		<module>order-appserver/order-front</module>
   </modules>
   
 </project>

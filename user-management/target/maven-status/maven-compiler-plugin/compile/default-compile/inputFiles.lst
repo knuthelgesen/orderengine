@@ -1,6 +1,0 @@
-/share/sandboxes/plasmid/orderengine/user-management/src/main/java/no/plasmid/order/usermanagement/dao/UserDAO.java
-/share/sandboxes/plasmid/orderengine/user-management/src/main/java/no/plasmid/order/usermanagement/im/User.java
-/share/sandboxes/plasmid/orderengine/user-management/src/main/java/no/plasmid/order/usermanagement/UserManagementService.java
-/share/sandboxes/plasmid/orderengine/user-management/src/main/java/no/plasmid/order/usermanagement/im/UserEntity.java
-/share/sandboxes/plasmid/orderengine/user-management/src/main/java/no/plasmid/order/usermanagement/UserManagementException.java
-/share/sandboxes/plasmid/orderengine/user-management/src/main/java/no/plasmid/order/usermanagement/util/PasswordHash.java

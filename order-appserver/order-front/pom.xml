@@ -18,12 +18,6 @@
   <dependencies>
   	<dependency>
   		<groupId>no.plasmid.order</groupId>
-  		<artifactId>order-message</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
-
-  	<dependency>
-  		<groupId>no.plasmid.order</groupId>
   		<artifactId>game-management</artifactId>
   		<version>${project.version}</version>
   	</dependency>

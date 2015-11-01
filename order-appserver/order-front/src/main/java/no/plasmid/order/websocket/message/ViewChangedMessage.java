@@ -1,4 +1,4 @@
-package no.plasmid.order.message;
+package no.plasmid.order.websocket.message;
 
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.View;

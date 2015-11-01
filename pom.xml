@@ -2,17 +2,17 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>no.plasmid.order</groupId>
-  <artifactId>order-engine</artifactId>
+  <artifactId>order-engine-parent</artifactId>
   <packaging>pom</packaging>
   <version>0.0.1</version>
-  <name>OrderEngine Master</name>
+  <name>OrderEngine Parent</name>
   
   <modules>
-		<module>platform/order-message</module>
 		<module>order-appserver/persistence</module>
 		<module>order-appserver/user-management</module>
 		<module>order-appserver/game-management</module>
 		<module>order-appserver/order-front</module>
+		<module>order-appserver/order-front2</module>
   </modules>
   
 </project>

@@ -1,12 +1,10 @@
 package no.plasmid.order.websocket.message;
 
-import no.plasmid.order.message.Message;
-
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MessageFactory extends no.plasmid.order.message.MessageFactory {
+public class MessageFactory {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MessageFactory.class);
 
@@ -16,6 +14,11 @@ public class MessageFactory extends no.plasmid.order.message.MessageFactory {
 	 * Authenticate keys and values
 	 ***********************************************************************************/
 	private static final String WS_TOKEN_KEY	= "wsToken";
+
+	/* *********************************************************************************
+	 * IssueOrder keys and values
+	 ***********************************************************************************/
+	private static final String ORDER_DATA_KEY	= "orderData";
 
 	/* *********************************************************************************
 	 * EnterGame keys and values
@@ -34,8 +37,10 @@ public class MessageFactory extends no.plasmid.order.message.MessageFactory {
 			return createAuthenticate(jsonObject);
 		case "enterGame":
 			return createEnterGame(jsonObject);
+		case "issueOrder":
+			return createIssueOrder(jsonObject);
 		default:
-			return no.plasmid.order.message.MessageFactory.create(jsonObject);
+			throw new IllegalArgumentException("Unknown message type: " + messageType);
 		}
 	}
 
@@ -49,6 +54,12 @@ public class MessageFactory extends no.plasmid.order.message.MessageFactory {
 		if (!jsonObject.has(GAME_ID_KEY)) { throw new IllegalArgumentException("No game ID"); }
 
 		return new EnterGameMessage(jsonObject.getInt(GAME_ID_KEY));
+	}
+
+	private static Message createIssueOrder(JSONObject jsonObject) {
+		if (!jsonObject.has(ORDER_DATA_KEY)) { throw new IllegalArgumentException("No order data"); }
+
+		return new IssueOrderMessage(jsonObject.getJSONObject(ORDER_DATA_KEY));
 	}
 
 }

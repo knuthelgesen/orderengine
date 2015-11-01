@@ -1,4 +1,4 @@
-package no.plasmid.order.message;
+package no.plasmid.order.websocket.message;
 
 public abstract class Message {
 	

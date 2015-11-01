@@ -1,6 +1,7 @@
-# if [ -f /etc/init.d/order-front ];
-# then
-# 	/etc/init.d/order-front stop
-# 	rm /etc/init.d/order-front
-# fi
+
+if [ -f /etc/systemd/system/order-appserver.service ];
+then
+	systemctl stop order-appserver.service
+	rm /etc/systemd/system/order-appserver.service
+fi
 

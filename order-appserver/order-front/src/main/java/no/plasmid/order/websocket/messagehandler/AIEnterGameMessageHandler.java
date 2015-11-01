@@ -10,7 +10,7 @@ import no.plasmid.order.gamemanagement.GameManagementService;
 import no.plasmid.order.gamemanagement.GameNotFoundException;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.View;
-import no.plasmid.order.message.Message;
+import no.plasmid.order.websocket.message.Message;
 
 public class AIEnterGameMessageHandler implements MessageHandler {
 

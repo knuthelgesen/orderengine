@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import no.plasmid.order.gamemanagement.ai.AIException;
 import no.plasmid.order.gamemanagement.ai.AIExecutor;
 import no.plasmid.order.websocket.message.EnterGameResponseMessage;
-import no.plasmid.order.message.Message;
-import no.plasmid.order.message.ViewChangedMessage;
+import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.websocket.message.ViewChangedMessage;
 import no.plasmid.order.websocket.messagehandler.MessageHandlerFactory;
 
 public class AIAdapter extends Adapter {

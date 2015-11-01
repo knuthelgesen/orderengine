@@ -4,12 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import no.plasmid.order.Adapter;
-import no.plasmid.order.message.Message;
 import no.plasmid.order.usermanagement.im.User;
 import no.plasmid.order.utils.WSTokenUtils;
 import no.plasmid.order.websocket.WebsocketAdapter;
 import no.plasmid.order.websocket.message.AuthenticateMessage;
 import no.plasmid.order.websocket.message.AuthenticateResponseMessage;
+import no.plasmid.order.websocket.message.Message;
 
 public class AuthenticateMessageHandler implements MessageHandler {
 

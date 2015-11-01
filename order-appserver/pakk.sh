@@ -7,31 +7,15 @@ rm -rf package
 
 #Create directory structure
 mkdir package
-# mkdir package/a01
-# mkdir package/a01/order-front
-# mkdir package/a01/order-front/wrapper
-# mkdir package/a01/order-front/config
-# mkdir package/a01/order-front/applib
-# mkdir package/a01/order-front/tmp
-
-mkdir package/opt
-mkdir package/opt/jetty-distribution
-mkdir package/opt/jetty-distribution/webapps
+mkdir package/a01
+mkdir package/a01/order-front
 
 mkdir package/var
 mkdir package/var/log
 mkdir package/var/log/order-front
 
-#Copy wrapper files
-# cp ../wrapper-files/* package/a01/order-front/wrapper/
-# cp wrapper/* package/a01/order-front/wrapper/
-
-#Copy lib files
-# cp applib/* package/a01/order-front/applib/
-
 #Copy web application
-# cp target/order-front.war package/a01/order-front/wrapper
-cp order-front/target/order-front.war package/opt/jetty-distribution/webapps
+cp order-front2/target/order-front.jar package/a01/order-front
 
-#Copy configuration files
-# cp config/* package/a01/order-front/config/
+#Copy systemd unit file
+cp order-appserver.service package/a01/order-front

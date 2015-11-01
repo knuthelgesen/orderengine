@@ -13,9 +13,9 @@ import no.plasmid.order.gamemanagement.GameNotFoundException;
 import no.plasmid.order.gamemanagement.model.Game;
 import no.plasmid.order.gamemanagement.model.Player;
 import no.plasmid.order.gamemanagement.model.View;
-import no.plasmid.order.message.IssueOrderMessage;
-import no.plasmid.order.message.Message;
-import no.plasmid.order.message.ViewChangedMessage;
+import no.plasmid.order.websocket.message.IssueOrderMessage;
+import no.plasmid.order.websocket.message.Message;
+import no.plasmid.order.websocket.message.ViewChangedMessage;
 
 public class IssueOrderMessageHandler implements MessageHandler {
 

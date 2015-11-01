@@ -14,7 +14,7 @@ import no.plasmid.order.gamemanagement.model.View;
 import no.plasmid.order.websocket.WebsocketAdapter;
 import no.plasmid.order.websocket.message.EnterGameMessage;
 import no.plasmid.order.websocket.message.EnterGameResponseMessage;
-import no.plasmid.order.message.Message;
+import no.plasmid.order.websocket.message.Message;
 
 public class EnterGameMessageHandler implements MessageHandler {
 

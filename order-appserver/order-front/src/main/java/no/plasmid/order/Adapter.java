@@ -1,7 +1,7 @@
 package no.plasmid.order;
 
 import no.plasmid.order.gamemanagement.model.Player;
-import no.plasmid.order.message.Message;
+import no.plasmid.order.websocket.message.Message;
 
 public abstract class Adapter {
 
